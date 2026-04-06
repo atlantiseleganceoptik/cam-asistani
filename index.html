@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith V48 | Final Clinical</title>
+    <title>Zenith V43 | MiyoSmart & Index Master</title>
     <style>
-        :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; --green: #25D366; }
+        :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; }
         body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; scroll-behavior: smooth; }
+        
         #zenith-hub { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; text-align: center; }
         .hub-title { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 5px; margin-bottom: 5px; text-transform: uppercase; }
         .hub-subtitle { font-size: 10px; color: var(--grey); letter-spacing: 3px; margin-bottom: 35px; font-weight: bold; }
+        
         .main-menu-item { width: 100%; max-width: 340px; background: var(--dark); border: 1.5px solid #333; border-radius: 20px; padding: 22px 15px; margin-bottom: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
         .main-menu-item.active-border { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
-        .main-menu-item.lens-special { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0, 242, 255, 0.15); border-width: 2px; }
         .main-menu-item span { font-size: 32px; margin-bottom: 12px; }
         .main-menu-item h3 { margin: 0; font-size: 17px; font-weight: 900; }
         .main-menu-item p { margin: 6px 0 0; font-size: 10px; color: var(--gold); font-weight: 800; }
-        #zenith-app, #lens-module { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
+
+        #zenith-app { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
         .back-btn { background: #1a1a1a; border: 1.5px solid var(--gold); color: var(--gold); padding: 10px 18px; border-radius: 12px; font-size: 11px; margin-bottom: 20px; cursor: pointer; font-weight: 900; }
+
         .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .brand-card { background: #111; border: 2px solid #333; border-radius: 15px; padding: 22px 5px; text-align: center; font-size: 15px; font-weight: 900; color: #fff; cursor: pointer; }
         .brand-card.active { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+
         .input-box { background: #0c0c0c; border-radius: 25px; padding: 20px; border: 1px solid #222; }
         .eye-title { color: var(--gold); font-size: 12px; font-weight: 900; text-align: center; margin: 15px 0; letter-spacing: 2px; }
         .ctrl-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; background: #000; padding: 12px; border-radius: 15px; border: 1.1px solid #1a1a1a; }
         .btn-v { width: 48px; height: 48px; border-radius: 14px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 26px; cursor: pointer; }
         .val-v { font-size: 20px; font-weight: 900; width: 85px; text-align: center; }
-        #screen-result, #lens-result { display: none; margin-top: 30px; }
-        .comp-card, .survey-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; }
+
+        #screen-result { display: none; margin-top: 30px; }
+        .comp-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; }
         .comp-tag { position: absolute; top: -14px; right: 25px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 6px 14px; border-radius: 8px; text-transform: uppercase; }
+        .index-badge { display: inline-block; background: #222; color: var(--cyan); font-size: 11px; font-weight: 900; padding: 5px 12px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #333; }
         .comp-title { font-size: 19px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; text-align: left; }
+
         .feature-item { margin-bottom: 18px; display: flex; align-items: flex-start; text-align: left; }
         .feature-item b { color: var(--gold); display: block; font-size: 13px; margin-bottom: 4px; text-transform: uppercase; }
         .feature-item p { color: #ccc; margin: 0; font-size: 12px; line-height: 1.5; font-weight: 500; }
-        .btn-main, .btn-action { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; }
 
-        /* Lens Modülü Özel */
-        .lens-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-        .lens-sign { background: #222; border: 1.1px solid #444; color: var(--gold); width: 50px; height: 50px; border-radius: 12px; font-size: 20px; font-weight: 900; cursor: pointer; }
-        .lens-sign.active { background: var(--cyan); color: #000; }
-        .lens-input { flex: 1; background: #000; border: 1.1px solid #222; color: #fff; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 900; }
-        .opt-chip { background: #1a1a1a; border: 1px solid #333; color: #888; padding: 12px; border-radius: 12px; font-size: 11px; margin-bottom: 8px; cursor: pointer; text-align: left; font-weight: bold; }
-        .opt-chip.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0, 242, 255, 0.05); }
+        .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
@@ -50,43 +50,10 @@
 <div id="zenith-hub">
     <div class="hub-title">ATLANTİS ELEGANCE</div>
     <div class="hub-subtitle">ZENİTH ROBOTİC OPTİC SYSTEMS</div>
-    <div class="main-menu-item lens-special" onclick="openLens()"><span>🧬</span><h3>LENS ANALİZ MERKEZİ</h3><p>KLİNİK ÇEVRİM & KONFOR TESTİ</p></div>
     <div class="main-menu-item active-border" onclick="navTo('Progressive')"><span>👓</span><h3>PROGRESSIVE</h3><p>UZAK - YAKIN BİR ARADA</p></div>
     <div class="main-menu-item" onclick="navTo('Tek Odaklı')"><span>👁️</span><h3>TEK ODAKLI</h3><p>TEK MESAFE ÇÖZÜMLERİ</p></div>
     <div class="main-menu-item" onclick="navTo('MiyoSmart')"><span>🛡️</span><h3>MIYOSMART</h3><p>MİYOPİ TEDAVİSİ</p></div>
-</div>
-
-<div id="lens-module">
-    <button class="back-btn" onclick="location.reload()">← GERİ DÖN</button>
-    <div class="survey-card">
-        <div class="eye-title">GÖZLÜK REÇETESİ</div>
-        <div class="lens-row">
-            <button class="lens-sign active" id="sph_s" onclick="tSign('sph_s')">+</button>
-            <input type="number" id="l_sph" class="lens-input" placeholder="SPH (Numara)">
-        </div>
-        <div class="lens-row">
-            <button class="lens-sign" id="cyl_s" onclick="tSign('cyl_s')">-</button>
-            <input type="number" id="l_cyl" class="lens-input" placeholder="CYL (Astigmat)">
-        </div>
-        <input type="number" id="l_aks" class="lens-input" placeholder="AKS" style="width:100%; margin-bottom:15px;">
-        
-        <div class="eye-title">KONFOR VE YAŞAM</div>
-        <div class="opt-chip" id="c_dry" onclick="this.classList.toggle('active')">Gözlerimde yanma/kuruluk/batma var</div>
-        <div class="opt-chip" id="c_dust" onclick="this.classList.toggle('active')">Tozlu veya klimalı ortamda çalışıyorum</div>
-        <div class="opt-chip" id="c_long" onclick="this.classList.toggle('active')">Günde 12 saatten fazla lens kullanıyorum</div>
-        <input type="text" id="l_old" class="lens-input" placeholder="Eski lens markanız (Varsa)" style="width:100%; margin-top:5px; font-size:12px;">
-        
-        <button class="btn-action" onclick="analyzeLens()" style="background:var(--cyan); margin-top:20px;">LENS ÖNERİSİNİ GÖR</button>
-    </div>
-
-    <div id="lens-result" class="comp-card" style="border-color:var(--cyan);">
-        <div class="comp-tag" style="background:var(--cyan);">ZENITH CLINICAL OPTIC</div>
-        <h3 id="res_l_title" style="color:var(--gold); margin:0;">--</h3>
-        <div id="res_l_pwr" style="font-size:24px; font-weight:900; margin:15px 0; color:var(--cyan);">--</div>
-        <div class="feature-item"><b>TAVSİYE NEDENİ:</b><p id="res_l_why">--</p></div>
-        <div class="feature-item"><b>TEKNOLOJİ:</b><p id="res_l_tech">--</p></div>
-        <button class="btn-action" style="background:var(--green); color:#fff;" onclick="sendLensWA()">WHATSAPP'A GÖNDER</button>
-    </div>
+    <div class="main-menu-item" onclick="navTo('Ofis')"><span>💻</span><h3>OFİS / MASA BAŞI</h3><p>YAKIN VE ORTA MESAFE</p></div>
 </div>
 
 <div id="zenith-app">
@@ -98,63 +65,165 @@
             <div class="brand-card" id="b-hoya" onclick="selectBrand('Hoya')">HOYA</div>
             <div class="brand-card" id="b-novax" onclick="selectBrand('Novax')">NOVAX</div>
         </div>
-        <div id="input-area" style="display:none;"><div class="input-box"><div id="inputs-container"></div><button class="btn-main" onclick="showResults()" style="background:var(--cyan); margin-top:20px;">ANALİZİ TAMAMLA</button></div></div>
+        <div id="input-area" style="display:none;">
+            <div class="input-box">
+                <div id="inputs-container"></div>
+                <button class="btn-main" onclick="showResults()" style="background:var(--cyan); margin-top:20px;">ANALİZİ TAMAMLA</button>
+            </div>
+        </div>
     </div>
-    <div id="screen-result"><div id="result-content"><div class="comp-card" id="premium-card"><div class="comp-tag">ZENITH LABORATORY RX</div><div id="res-pre-index" class="index-badge">--</div><span class="comp-title" id="res-pre-title">--</span><div id="res-pre-features"></div><button class="btn-main" onclick="toWA('Premium')">BİLGİ VE RANDEVU ALIN</button></div><div class="comp-card" id="std-card"><div class="comp-tag" style="background:#222; color:var(--gold);">STANDART SEÇENEK</div><div id="res-std-index" class="index-badge">--</div><span class="comp-title" id="res-std-title">--</span><div id="res-std-features"></div><button class="btn-main" onclick="toWA('Alternatif')">BİLGİ VE RANDEVU ALIN</button></div></div></div>
+
+    <div id="screen-result">
+        <div id="result-content">
+            <div class="comp-card" id="premium-card">
+                <div class="comp-tag">ZENITH LABORATORY RX</div>
+                <div id="res-pre-index" class="index-badge">Tavsiye: --</div>
+                <span class="comp-title" id="res-pre-title">...</span>
+                <div id="res-pre-features"></div>
+                <button class="btn-main" id="btn-wa-pre" onclick="toWA('Premium')">BİLGİ VE RANDEVU ALIN</button>
+            </div>
+            <div class="comp-card" id="std-card">
+                <div class="comp-tag" style="background:#222; color:var(--gold);">STANDART SEÇENEK</div>
+                <div id="res-std-index" class="index-badge">Tavsiye: --</div>
+                <span class="comp-title" id="res-std-title">...</span>
+                <div id="res-std-features"></div>
+                <button class="btn-main" id="btn-wa-std" onclick="toWA('Alternatif')">BİLGİ VE RANDEVU ALIN</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
     let currentFlow = ""; let currentBrand = "";
     let vals = { r_sph:0, r_cyl:0, r_aks:0, r_add:0, l_sph:0, l_cyl:0, l_aks:0, l_add:0 };
-    let l_signs = { sph:1, cyl:-1 };
 
-    function openLens() { document.getElementById('zenith-hub').style.display='none'; document.getElementById('lens-module').style.display='block'; }
-    function tSign(id) { let type = id.split('_')[0]; l_signs[type] *= -1; let b = document.getElementById(id); b.innerText = l_signs[type] === 1 ? '+' : '-'; b.classList.toggle('active'); }
+    const opticData = {
+        'Zeiss': {
+            'Progressive': {
+                c1: ['SmartLife Individual 3', [['💎 AI Kişiselleştirme', 'Yapay zeka desteğiyle günlük rutininize özel optimize edilen en geniş görüş koridoru.'], ['🎯 Dijital Dinamik', 'Hareket halindeyken odak kaymasını sıfırlayan, her açıda netlik sunan akıllı tasarım.'], ['🌌 Panoramik Görüş', 'Uzak, orta ve yakın alanlar arasında pürüzsüz geçiş sağlayan milimetrik teknoloji.'], ['🛡️ DuraVision Platinum', 'Dünyanın en dayanıklı kaplamasıyla yansıma yapmayan, su tutmayan kristal yüzey.']]],
+                c2: ['SmartLife Superb', [['✅ Çerçeve Uyumu', 'Seçtiğiniz çerçevenin yüzünüzdeki duruş açısına özel lazer optimizasyonu.'], ['👁️ Kristal Netlik', 'Geleneksel camlara göre kenar alanlardaki bulanıklığı %40 oranında azaltan yüzey.'], ['🛡️ UV Koruması', 'Gözlerinizi gün boyu zararlı ışınlardan koruyan tam entegre filtreleme.'], ['🚀 Hızlı Adaptasyon', 'Yeni numaralarınıza ilk dakikadan itibaren zahmetsiz alışma garantisi.']]]
+            },
+            'Tek Odaklı': {
+                c1: ['SmartLife ClearView RX', [['💎 FreeForm Teknoloji', 'Stok camların aksine her nokta için ayrı ayrı hesaplanmış HD görüntü kalitesi.'], ['🕊️ Ultra İnce Estetik', 'Yüksek numaralarda bile %20ye varan incelik sağlayan asferik tasarım.'], ['🧿 UV Protection', 'Güneş gözlüğü düzeyinde UV koruması sağlayan patentli Zeiss materyali.'], ['🛡️ Premium Kaplama', 'Çizilmeye karşı ekstra dirençli ve kolay temizlenen yüzey teknolojisi.']]],
+                c2: ['ClearView Stock', [['✅ Yüksek Netlik', 'Standart camlara oranla %30 daha geniş merkezi görme alanı.'], ['🛡️ DuraVision Silver', 'Gece sürüşlerinde ışık yansımalarını minimuma indiren özel kaplama.'], ['🚀 Hızlı Teslimat', 'Kusursuz kaliteyi en hızlı sürede sunan hazır stok avantajı.'], ['⚖️ Dengeli Görüş', 'Hafif materyal yapısı ile burun köprüsünde minimum baskı.']]]
+            }
+        },
+        'Seiko': {
+            'Progressive': {
+                c1: ['Brilliance Premium', [['🔬 Dual-Side Tasarım', 'Camın hem ön hem arka yüzeyinde işleme yaparak görüş koridorunu maksimuma çıkarır.'], ['🌪️ Sarsıntısız Görüş', 'Yürürken oluşan yer kayması ve baş dönmesi hissini sıfıra indiren Seiko algoritması.'], ['🎯 Akıllı Fokus', 'Dijital ekranlar ve kitap okuma mesafesi arasında en konforlu geçiş hassasiyeti.'], ['🛡️ HCC Kaplama', 'Dünyanın en pürüzsüz yüzeyi sayesinde toz ve kir tutmayan özel katman.']]],
+                c2: ['Emblem Advanced', [['✅ Stabil Görüntü', 'Hareketli bir yaşam tarzı için tasarlanmış geniş dengeli orta alan.'], ['💎 Estetik İnceltme', 'Cam kenar kalınlığını optimize eden Seiko estetik kesim teknolojisi.'], ['👁️ HD Optik', 'Dijital tarama ile her noktada berrak ve doğal görüntü kalitesi.'], ['🛡️ UV-Protection', 'Doğal ışığı koruyan, zararlı ışığı süzen tam koruma katmanı.']]]
+            },
+            'Tek Odaklı': {
+                c1: ['A-Zone Dual Aspheric', [['📐 Çift Asferik', 'Dünyanın en ince ve en doğal görüntüsünü sunan çift taraflı asferik tasarım.'], ['💎 Sıfır Bozulma', 'Gözlük takmıyormuşsunuz gibi doğal bir çevre görüşü sağlar.'], ['🕊️ Tüy Hafifliği', 'Ağırlığı hissetmeyeceğiniz kadar hafif, özel indeksli hammadde.'], ['🛡️ Super Resistant', 'Darbe ve çizilmeye karşı maksimum koruma sağlayan Seiko standartı.']]],
+                c2: ['AS Single Vision', [['✅ Hassas Dijital Kesim', 'Her noktada yüksek çözünürlük sunan lazer tabanlı üretim.'], ['👁️ Net Görüş Alanı', 'Camın merkezinden kenarlara kadar genişletilmiş netlik.'], ['🛡️ HCC Coating', 'Yansıma önleyici ve uzun ömürlü kullanım sağlayan kaplama.'], ['⚖️ Ergonomik Yapı', 'Uzun süreli kullanımlarda göz yorgunluğunu azaltan optik denge.']]]
+            }
+        },
+        'Hoya': {
+            'Progressive': {
+                c1: ['MySelf iD Lifestyle 3', [['🔬 3D Analiz', 'Hoya’nın 3D ölçümleme teknolojisi ile hatasız odak noktaları.'], ['🌪️ Binoküler Denge', 'Sağ ve sol göz arasındaki numara farkını senkronize eden benzersiz yapı.'], ['📊 Maksimum Görüş', 'Okuma ve bilgisayar alanında bugüne kadarki en geniş konfor.'], ['💎 LongLife Kaplama', 'Dünyanın en dayanıklı, çizilmeye karşı 5 kat dirençli kaplaması.']]],
+                c2: ['Balansis Advanced', [['⚡ Hızlı Alışma', 'Progresif camlara ilk kez başlayanlar için tasarlanmış kolay adaptasyon.'], ['🎯 Dijital Fokus', 'Akıllı telefon kullanımında gözü yormayan yumuşak geçişler.'], ['🛡️ Super Hi-Vision', 'Kristal berraklığında görüş sunan yüksek kaliteli yansıma önleyici.'], ['✅ Fiyat/Performans', 'En son Hoya teknolojilerini ekonomik bütçeyle sunan seçenek.']]]
+            }
+        },
+        'Novax': {
+            'Progressive': {
+                c1: ['Nucleo High-End', [['🎯 Freeform Plus', 'Sıfır hata payı ile dijital yüzey işleme ve mükemmel odaklama.'], ['🌌 Gece Netliği', 'Gece sürüşlerinde ışık dağılmasını önleyen HD kaplama teknolojisi.'], ['🛡️ Pixal Kaplama', 'Mavi ışığı süzen ve göz yorgunluğunu alan akıllı katmanlar.']]],
+                c2: ['Evolution Plus', [['✅ Hızlı Uyum', 'Uzak ve yakını bir arada sunan, her yaşa uygun ekonomik konfor.'], ['👁️ Geniş Açı', 'Standart progresif camlara oranla daha rahat görüş koridoru.'], ['💪 Dayanıklı Yapı', 'Günlük kullanımın getirdiği zorluklara karşı ekstra dirençli.']]]
+            }
+        }
+    };
 
-    function analyzeLens() {
-        let s = (parseFloat(document.getElementById('l_sph').value) || 0) * l_signs.sph;
-        let c = (parseFloat(document.getElementById('l_cyl').value) || 0) * l_signs.cyl;
-        let a = parseInt(document.getElementById('l_aks').value) || 0;
+    function navTo(t) { 
+        currentFlow = t; 
+        document.getElementById('zenith-hub').style.display = 'none'; 
+        document.getElementById('zenith-app').style.display = 'block'; 
         
-        let fSph = (Math.abs(s) >= 4.00) ? (s / (1 - (0.012 * s))) : s;
-        let isT = Math.abs(c) >= 0.75;
-        let finalSph, finalCyl = 0, finalAks = 0;
-
-        if(!isT) { finalSph = (Math.round((fSph + c/2) * 4) / 4).toFixed(2); }
-        else { finalSph = (Math.round(fSph * 4) / 4).toFixed(2); finalCyl = [-0.75,-1.25,-1.75,-2.25].reduce((p,curr)=>Math.abs(curr-c)<Math.abs(p-c)?curr:p); finalAks = Math.round(a/10)*10 || 180; }
-
-        let b = "Alcon Dailies Total 1"; let w = "Verteks hesabı yapılarak numaranız optimize edildi."; let t = "Su Gradyanı teknolojisi ile %100 oksijen.";
-        if(document.getElementById('c_dry').classList.contains('active')) { b = "Bausch + Lomb Ultra"; w = "Göz kuruluğu ve batma şikayetiniz için MoistureSeal teknolojisi seçildi."; t = "16 saat boyunca %95 nem tutma özelliği."; }
-        if(document.getElementById('c_long').classList.contains('active')) { b = "Acuvue Oasys 1-Day"; w = "Uzun süreli kullanımda göz yorgunluğunu önleyen HydraLuxe yapısı."; }
-        if(isT) b += " for Astigmatism";
-
-        document.getElementById('res_l_title').innerText = b;
-        document.getElementById('res_l_pwr').innerText = `LENS: ${finalSph>0?'+':''}${finalSph} ${isT ? '/ '+finalCyl+' Ax:'+finalAks : ''}`;
-        document.getElementById('res_l_why').innerText = w; document.getElementById('res_l_tech').innerText = t;
-        document.getElementById('lens-result').style.display='block';
+        if(t === 'MiyoSmart') {
+            currentBrand = 'Hoya';
+            showMiyoSmart();
+        } else {
+            document.getElementById('brand-selector').style.display = 'grid';
+            document.getElementById('input-area').style.display = 'none';
+            document.getElementById('screen-result').style.display = 'none';
+        }
     }
 
-    function sendLensWA() { let msg = `*Zenith Lens Analizi*%0A*Lens:* ${document.getElementById('res_l_title').innerText}%0A*Numara:* ${document.getElementById('res_l_pwr').innerText}`; window.location.href="https://wa.me/905326470159?text="+msg; }
+    function selectBrand(b) { 
+        currentBrand = b; 
+        document.querySelectorAll('.brand-card').forEach(c => c.classList.remove('active')); 
+        document.getElementById('b-'+b.toLowerCase()).classList.add('active'); 
+        document.getElementById('input-area').style.display = 'block'; 
+        renderInputs(); 
+    }
 
-    // KLASİK V43 FONKSİYONLARI (DOKUNULMADI)
-    function navTo(t) { currentFlow=t; document.getElementById('zenith-hub').style.display='none'; document.getElementById('zenith-app').style.display='block'; if(t==='MiyoSmart') showMiyoSmart(); else { document.getElementById('brand-selector').style.display='grid'; document.getElementById('input-area').style.display='none'; document.getElementById('screen-result').style.display='none'; } }
-    function selectBrand(b) { currentBrand=b; document.querySelectorAll('.brand-card').forEach(c=>c.classList.remove('active')); document.getElementById('b-'+b.toLowerCase()).classList.add('active'); document.getElementById('input-area').style.display='block'; renderInputs(); }
     function renderInputs() {
-        let h = ""; ['r','l'].forEach(s => { h += `<div class="eye-title">${s==='r'?'SAĞ GÖZ (R)':'SOL GÖZ (L)'}</div>`; let f = ['sph','cyl','aks']; if(currentFlow==='Progressive') f.push('add'); f.forEach(t => { let st = (t==='aks'?1:0.25); h += `<div class="ctrl-row"><span>${t.toUpperCase()}</span><button class="btn-v" onclick="chV('${s}_${t}', -${st})">-</button><div id="${s}_${t}_v" class="val-v">${t==='aks'?(vals[s+'_'+t]||0):(vals[s+'_'+t]||0).toFixed(2)}</div><button class="btn-v" onclick="chV('${s}_${t}', ${st})">+</button></div>`; }); });
+        let h = "";
+        ['r','l'].forEach(s => {
+            h += `<div class="eye-title">${s==='r'?'SAĞ GÖZ (R)':'SOL GÖZ (L)'}</div>`;
+            let fields = ['sph','cyl','aks'];
+            if(currentFlow === 'Progressive' || currentFlow === 'Ofis') fields.push('add');
+            fields.forEach(t => {
+                let st = (t==='aks'? 1 : 0.25);
+                h += `<div class="ctrl-row"><span style="font-size:10px; color:#444;">${t.toUpperCase()}</span><button class="btn-v" onclick="chV('${s}_${t}', -${st})">-</button><div id="${s}_${t}_v" class="val-v">${t==='aks'?(vals[s+'_'+t]||0):(vals[s+'_'+t]||0).toFixed(2)}</div><button class="btn-v" onclick="chV('${s}_${t}', ${st})">+</button></div>`;
+            });
+        });
         document.getElementById('inputs-container').innerHTML = h;
     }
-    function chV(id, a) { if(id.includes('aks')) vals[id]=(vals[id]+a+181)%181; else vals[id]+=a; document.getElementById(id+'_v').innerText = (id.includes('aks')?vals[id]:(vals[id]>0?"+":"")+vals[id].toFixed(2)); }
+
+    function chV(id, a) {
+        if(!vals[id]) vals[id] = 0;
+        if(id.includes('aks')) { vals[id] = (vals[id] + a + 181) % 181; document.getElementById(id+'_v').innerText = vals[id]; }
+        else { vals[id] += a; document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2); }
+    }
+
+    function getRecommendedIndex() {
+        if(currentFlow === 'MiyoSmart') return "1.59 Polikarbon (Darbe Dirençli)";
+        let maxAbs = Math.max(Math.abs(vals.r_sph) + Math.abs(vals.r_cyl), Math.abs(vals.l_sph) + Math.abs(vals.l_cyl));
+        if (maxAbs <= 2.00) return "1.56 İndeks %30 İnce";
+        if (maxAbs <= 4.00) return "1.61 İndeks %40 İnce";
+        if (maxAbs <= 6.00) return "1.67 İndeks %60 İnce";
+        return "1.74 İndeks %75 İnce";
+    }
+
     function showMiyoSmart() {
-        document.getElementById('screen-detail').style.display='none'; document.getElementById('res-pre-title').innerText="HOYA MiyoSmart D.I.M.S.";
-        document.getElementById('res-pre-features').innerHTML = `<div class="feature-item"><b>🛡️ D.I.M.S.</b><p>Miyopi ilerlemesini yavaşlatan teknoloji.</p></div>`;
-        document.getElementById('std-card').style.display='none'; document.getElementById('screen-result').style.display='block';
+        document.getElementById('screen-detail').style.display = 'none';
+        document.getElementById('res-pre-title').innerText = "HOYA MiyoSmart D.I.M.S.";
+        document.getElementById('res-pre-index').innerText = "MATERYAL: 1.59 Polikarbon";
+        document.getElementById('res-pre-features').innerHTML = `
+            <div class="feature-item"><div><b>🛡️ D.I.M.S. Teknolojisi</b><p>Cam yüzeyindeki yüzlerce küçük petek odak ile miyopi ilerlemesini ortalama %60 oranında yavaşlatır.</p></div></div>
+            <div class="feature-item"><div><b>💎 Polikarbon Hammadde</b><p>Kırılmaya karşı ekstrem dirençli, çocukların aktif yaşamı için dünyanın en güvenli materyali.</p></div></div>
+            <div class="feature-item"><div><b>📉 Miyopi Tedavisi</b><p>Göz ekseninin uzamasını kontrol altına alarak ileride oluşabilecek göz rahatsızlıklarını engeller.</p></div></div>
+            <div class="feature-item"><div><b>🔄 1 YIL GARANTİ</b><p>Sph numarasında 0.50 derece ve üzeri değişimlerde 1 yıl içerisinde ÜCRETSİZ değişim hakkı.</p></div></div>
+            <div class="feature-item"><div><b>☀️ UV & Mavi Işık</b><p>Dijital ekranlardan ve güneşten gelen zararlı ışınlara karşı tam koruma sağlar.</p></div></div>
+        `;
+        document.getElementById('std-card').style.display = 'none';
+        document.getElementById('screen-result').style.display = 'block';
     }
+
     function showResults() {
-        document.getElementById('res-pre-title').innerText = currentBrand + " Premium";
-        document.getElementById('res-pre-features').innerHTML = `<div class="feature-item"><b>💎 TEKNOLOJİ</b><p>Kişiye özel üretim.</p></div>`;
-        document.getElementById('screen-result').style.display='block';
+        let cat = currentFlow === 'Tek Odaklı' ? 'Tek Odaklı' : 'Progressive';
+        let dataSet = (opticData[currentBrand] && opticData[currentBrand][cat]) || { c1: [currentBrand+' Premium RX', [['💎 Teknoloji','RX Üretim.']]], c2:[currentBrand+' Advanced', [['✅ Konfor','Geniş alan.']]] };
+
+        let recIndex = getRecommendedIndex();
+        document.getElementById('res-pre-index').innerText = "ZENİTH TAVSİYESİ: " + recIndex;
+        document.getElementById('res-std-index').innerText = "ZENİTH TAVSİYESİ: " + recIndex;
+
+        document.getElementById('res-pre-title').innerText = currentBrand + " " + dataSet.c1[0];
+        document.getElementById('res-pre-features').innerHTML = dataSet.c1[1].map(f => `<div class="feature-item"><div><b>${f[0]}</b><p>${f[1]}</p></div></div>`).join('');
+        document.getElementById('res-std-title').innerText = currentBrand + " " + dataSet.c2[0];
+        document.getElementById('res-std-features').innerHTML = dataSet.c2[1].map(f => `<div class="feature-item"><div><b>${f[0]}</b><p>${f[1]}</p></div></div>`).join('');
+
+        document.getElementById('std-card').style.display = 'block';
+        document.getElementById('screen-result').style.display = 'block';
+        setTimeout(() => { document.getElementById('premium-card').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
     }
-    function toWA(t) { let msg = `*Zenith Analiz*%0A*Gözlük:* ${currentBrand}%0A*R:* ${vals.r_sph.toFixed(2)}`; window.location.href="https://wa.me/905326470159?text="+msg; }
+
+    function toWA(t) {
+        let title = t === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
+        let index = getRecommendedIndex();
+        let addStr = (vals.r_add || vals.l_add) ? `%0A*ADD:* R:${vals.r_add.toFixed(2)} / L:${vals.l_add.toFixed(2)}` : "";
+        let msg = `*Zenith Analiz*%0A*Ürün:* ${title}%0A*Tavsiye:* ${index}%0A*R:* ${vals.r_sph.toFixed(2)}/${vals.r_cyl.toFixed(2)} Ax:${vals.r_aks}${addStr}`;
+        window.location.href = "https://wa.me/905326470159?text=" + msg;
+    }
 </script>
 </body>
 </html>
