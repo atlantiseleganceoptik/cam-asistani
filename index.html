@@ -12,34 +12,27 @@
         .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; margin: 0; }
         .subtitle { font-size: 9px; color: #666; letter-spacing: 4px; margin-top: 5px; }
 
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
         .card { 
-            background: var(--gray); border: 1px solid #222; border-radius: 15px; padding: 20px; 
-            margin-bottom: 15px; cursor: pointer; transition: 0.3s; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); border-left: 5px solid transparent;
+            background: var(--gray); border: 1px solid #222; border-radius: 12px; padding: 15px; 
+            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border-bottom: 3px solid transparent;
         }
-        .card:active { transform: scale(0.98); }
-        .card.active-card { border-left: 5px solid var(--gold); background: rgba(212, 175, 55, 0.1); }
-        .card h3 { margin: 0; color: var(--gold); font-size: 16px; pointer-events: none; }
-        .card p { margin: 5px 0 0 0; color: #888; font-size: 12px; pointer-events: none; }
+        .card:active { transform: scale(0.97); }
+        .card.active-card { border-bottom: 3px solid var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .card h3 { margin: 0; color: var(--gold); font-size: 13px; text-transform: uppercase; }
+        .card p { margin: 3px 0 0 0; color: #777; font-size: 10px; }
 
-        #form-area { display: none; background: var(--gray); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-top: 20px; }
-        .eye-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+        #form-area { display: none; background: var(--gray); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-top: 10px; }
+        .eye-grid { display: grid; grid-template-columns: 1fr 1fr 0.7fr; gap: 8px; margin-top: 10px; }
         .val-group { display: flex; align-items: center; gap: 2px; }
-        .sign-sel { width: 50px !important; padding: 10px 2px !important; background: #222 !important; border: 1px solid var(--gold) !important; color: white; font-weight: bold; border-radius: 5px; }
+        .sign-sel { width: 42px !important; padding: 8px 1px !important; background: #222 !important; border: 1px solid var(--gold) !important; color: white; font-weight: bold; border-radius: 5px; }
         
-        label { font-size: 11px; color: #777; display: block; margin-bottom: 5px; }
-        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 14px; box-sizing: border-box; }
-        .btn { background: var(--gold); color: #000; padding: 16px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 20px; font-size: 16px; }
+        label { font-size: 10px; color: #666; display: block; margin-bottom: 3px; }
+        input, select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #333; background: #000; color: #fff; font-size: 13px; box-sizing: border-box; }
+        .btn { background: var(--gold); color: #000; padding: 15px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 15px; font-size: 15px; }
         
-        .result-box { display: none; margin-top: 20px; padding: 20px; border: 1px solid var(--gold); border-radius: 12px; background: rgba(212, 175, 55, 0.05); }
-        .option-box { background: #000; border: 1px solid #444; padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 13px; color: #ddd; }
-        
-        /* Robotik Notu Alanı */
-        .robot-badge { 
-            margin-top: 15px; padding: 10px; border-radius: 8px; background: rgba(0, 242, 255, 0.05); 
-            border: 1px solid var(--cyan); display: flex; align-items: center; gap: 10px;
-        }
-        .robot-badge span { color: var(--cyan); font-size: 11px; font-weight: bold; line-height: 1.2; }
+        .result-box { display: none; margin-top: 20px; padding: 15px; border: 1px solid var(--gold); border-radius: 10px; background: rgba(212, 175, 55, 0.05); }
+        .robot-badge { margin-top: 15px; padding: 10px; border-radius: 8px; background: rgba(0, 242, 255, 0.05); border: 1px solid var(--cyan); display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--cyan); }
     </style>
 </head>
 <body>
@@ -50,73 +43,70 @@
         <div class="subtitle">AI & TECHNOLOGY SYSTEMS</div>
     </div>
 
-    <div class="card" id="card-stok" onclick="openForm('Stok')">
-        <h3>📦 STOK CAMLAR</h3>
-        <p>Hızlı Teslimat & Ekonomik Çözümler</p>
-    </div>
-
-    <div class="card" id="card-rx" onclick="openForm('RX')">
-        <h3>💎 KİŞİYE ÖZEL (RX)</h3>
-        <p>Yüksek Teknoloji & Premium Konfor</p>
-    </div>
-
-    <div class="card" id="card-miyosmart" onclick="openForm('MiyoSmart')">
-        <h3>🛡️ MİYOSMART MERKEZİ</h3>
-        <p>Çocuklar İçin Miyopi Kontrol Tedavisi</p>
+    <div class="card-grid">
+        <div class="card" id="card-stok" onclick="openForm('Stok')">
+            <h3>📦 Stok Cam</h3>
+            <p>Hızlı & Ekonomik</p>
+        </div>
+        <div class="card" id="card-rx" onclick="openForm('RX')">
+            <h3>💎 Özel RX</h3>
+            <p>Kişiye Özel Üretim</p>
+        </div>
+        <div class="card" id="card-prog" onclick="openForm('Progressive')">
+            <h3>👓 Uzak-Yakın</h3>
+            <p>Progressive Çözümler</p>
+        </div>
+        <div class="card" id="card-miyo" onclick="openForm('MiyoSmart')">
+            <h3>🛡️ Miyopi</h3>
+            <p>Çocuk Göz Sağlığı</p>
+        </div>
     </div>
 
     <div id="form-area">
-        <h4 id="form-title" style="color:var(--gold); margin-top:0;">Analiz Parametreleri</h4>
+        <h4 id="form-title" style="color:var(--gold); margin:0 0 15px 0; font-size: 14px;">Parametreler</h4>
         
-        <label>Cam Markası / Kaplama:</label>
+        <label>Cam Markası / Teknoloji:</label>
         <select id="brand" style="margin-bottom:15px;"></select>
+
+        <div id="prog-extra" style="display:none; margin-bottom:15px; background:#000; padding:10px; border-radius:8px; border:1px dashed var(--gold);">
+            <label style="color:var(--gold)">Yakın Okuma Desteği (ADD):</label>
+            <input type="text" id="add_val" placeholder="Örn: +2.00">
+        </div>
 
         <div id="miyo-extra" style="display:none; margin-bottom:15px;">
             <label>Çocuğunuzun Yaşı:</label>
-            <input type="number" id="child_age" placeholder="Örn: 9">
+            <input type="number" id="child_age" placeholder="Örn: 10">
         </div>
 
-        <span style="color:var(--gold); font-size:12px; font-weight:bold;">SAĞ GÖZ (R)</span>
+        <span style="color:var(--gold); font-size:11px; font-weight:bold;">SAĞ GÖZ (R)</span>
         <div class="eye-grid">
-            <div>
-                <label>SPH</label>
-                <div class="val-group">
-                    <select id="r_sph_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
-                    <input type="text" id="r_sph" placeholder="0.00">
-                </div>
-            </div>
-            <div>
-                <label>CYL</label>
-                <div class="val-group">
-                    <select id="r_cyl_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
-                    <input type="text" id="r_cyl" placeholder="0.00">
-                </div>
-            </div>
-            <div><label>AKS</label><input type="number" id="r_aks" placeholder="0"></div>
+            <div><div class="val-group">
+                <select id="r_sph_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
+                <input type="text" id="r_sph" placeholder="SPH">
+            </div></div>
+            <div><div class="val-group">
+                <select id="r_cyl_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
+                <input type="text" id="r_cyl" placeholder="CYL">
+            </div></div>
+            <div><input type="number" id="r_aks" placeholder="AKS"></div>
         </div>
 
-        <div style="height:15px;"></div>
+        <div style="height:10px;"></div>
 
-        <span style="color:var(--gold); font-size:12px; font-weight:bold;">SOL GÖZ (L)</span>
+        <span style="color:var(--gold); font-size:11px; font-weight:bold;">SOL GÖZ (L)</span>
         <div class="eye-grid">
-            <div>
-                <label>SPH</label>
-                <div class="val-group">
-                    <select id="l_sph_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
-                    <input type="text" id="l_sph" placeholder="0.00">
-                </div>
-            </div>
-            <div>
-                <label>CYL</label>
-                <div class="val-group">
-                    <select id="l_cyl_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
-                    <input type="text" id="l_cyl" placeholder="0.00">
-                </div>
-            </div>
-            <div><label>AKS</label><input type="number" id="l_aks" placeholder="0"></div>
+            <div><div class="val-group">
+                <select id="l_sph_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
+                <input type="text" id="l_sph" placeholder="SPH">
+            </div></div>
+            <div><div class="val-group">
+                <select id="l_cyl_s" class="sign-sel"><option value="-">-</option><option value="+">+</option></select>
+                <input type="text" id="l_cyl" placeholder="CYL">
+            </div></div>
+            <div><input type="number" id="l_aks" placeholder="AKS"></div>
         </div>
 
-        <button class="btn" onclick="runAnalysis()">ANALİZİ TAMAMLA</button>
+        <button class="btn" onclick="runAnalysis()">TEKNİK ANALİZİ TAMAMLA</button>
     </div>
 
     <div id="result" class="result-box"></div>
@@ -128,22 +118,23 @@
     function openForm(type) {
         mode = type;
         document.querySelectorAll('.card').forEach(c => c.classList.remove('active-card'));
-        document.getElementById('card-' + type.toLowerCase()).classList.add('active-card');
+        document.getElementById('card-' + (type === 'Progressive' ? 'prog' : type === 'MiyoSmart' ? 'miyo' : type.toLowerCase())).classList.add('active-card');
         document.getElementById('form-area').style.display = 'block';
         document.getElementById('result').style.display = 'none';
-        document.getElementById('form-title').innerText = type + " Analizi";
+        document.getElementById('form-title').innerText = type + " - Uzman Analizi";
         
         let brands = document.getElementById('brand');
         brands.innerHTML = "";
-        let list = type === 'Stok' ? ["Standart Stok", "Mavi Işık Korumalı Stok"] : 
-                   type === 'MiyoSmart' ? ["Hoya MiyoSmart (Orijinal)"] :
-                   ["Zeiss Premium RX", "Seiko Kişiye Özel", "Hoya LongLife RX", "Novax Freeform"];
+        let list = type === 'Stok' ? ["Standart Stok", "Mavi Işık Korumalı"] : 
+                   type === 'Progressive' ? ["Zeiss SmartLife Progressive", "Varilux Series", "Seiko Brilliance", "Hoya LifeStyle 3"] :
+                   type === 'MiyoSmart' ? ["Hoya MiyoSmart"] :
+                   ["Zeiss RX", "Seiko RX", "Hoya RX"];
         
-        list.forEach(b => {
-            let o = document.createElement("option"); o.value = o.innerText = b; brands.appendChild(o);
-        });
+        list.forEach(b => { let o = document.createElement("option"); o.value = o.innerText = b; brands.appendChild(o); });
+        
+        document.getElementById('prog-extra').style.display = (type === 'Progressive') ? 'block' : 'none';
         document.getElementById('miyo-extra').style.display = (type === 'MiyoSmart') ? 'block' : 'none';
-        window.scrollTo({top: document.getElementById('form-area').offsetTop - 20, behavior: 'smooth'});
+        window.scrollTo({top: document.getElementById('form-area').offsetTop - 10, behavior: 'smooth'});
     }
 
     function runAnalysis() {
@@ -151,45 +142,34 @@
         let rc = Math.abs(parseFloat(document.getElementById('r_cyl').value) || 0);
         let ls = Math.abs(parseFloat(document.getElementById('l_sph').value) || 0);
         let lc = Math.abs(parseFloat(document.getElementById('l_cyl').value) || 0);
-        
-        let maxVal = Math.max(rs, ls, rc, lc);
+        let max = Math.max(rs, rc, ls, lc);
         let res = document.getElementById('result');
-        let html = `<h4 style="margin:0; color:var(--gold);">ZENITH ÖN ANALİZ RAPORU</h4>`;
+        let html = `<h4 style="margin:0; color:var(--gold);">ZENITH TEKNİK RAPOR</h4>`;
 
-        if (mode === 'MiyoSmart') {
-            html += `<p style="font-size:13px;"><b>MiyoSmart Tedavi Odağı:</b> DIMS Teknolojisi ile miyopi ilerlemesini kontrol altına almak için özel tasarım.</p>`;
+        if (mode === 'Progressive') {
+            html += `<p style="font-size:12px;"><b>Progressive Analizi:</b> Uzak ve yakın tek bir camda birleştirilecektir. Bu camlarda Zenith robotik ölçümü, adaptasyon süresini %90 kısaltır.</p>`;
+        } else if (mode === 'MiyoSmart') {
+            html += `<p style="font-size:12px;"><b>Miyopi Kontrol:</b> Çocuklar için özel tedavi odaklı cam.</p>`;
         } else {
-            if (maxVal <= 2.25) {
-                html += `<p style="font-size:13px;"><b>Önerilen:</b> 1.56 İndis (%30 İnce)<br>Günlük kullanım için ekonomik ve hafif çözüm.</p>`;
-            } else if (maxVal > 2.25 && maxVal <= 3.00) {
-                html += `<p style="font-size:13px;"><b>Önerilen:</b> 1.61 İndis (%45 İnce)<br>Estetik görünüm ve yüksek dayanıklılık dengesi.</p>`;
-            } else {
-                html += `<p style="font-size:13px;"><b>Yüksek Hassasiyet Analizi:</b><br>Konforunuz için iki üst düzey seçenek mevcuttur:</p>
-                        <div class="option-box"><b>Seçenek 1:</b> 1.67 İndis (%60 İnce)<br>Üst düzey hafiflik ve asferik tasarım.</div>
-                        <div class="option-box"><b>Seçenek 2:</b> 1.74 İndis (%75 İnce)<br>Maksimum estetik (Kağıt gibi ince camlar).</div>`;
-            }
+            if (max <= 2.25) html += `<p><b>Öneri:</b> 1.56 (%30 İnce)</p>`;
+            else if (max <= 3.00) html += `<p><b>Öneri:</b> 1.61 (%45 İnce)</p>`;
+            else html += `<p><b>Yüksek Hassasiyet:</b> 1.67 (%60) veya 1.74 (%75) seçenekleri önerilir.</p>`;
         }
 
-        // ROBOTİK ÖLÇÜM NOTU
-        html += `<div class="robot-badge">
-                    <div style="font-size:20px;">🤖</div>
-                    <span>ZENITH ROBOTİK ÖLÇÜM SİSTEMİ:<br>Seçtiğiniz cam, milimetrik robotik ölçümle odağa alınacaktır.</span>
-                 </div>`;
-
-        html += `<button class="btn" style="background:#25d366; color:#fff;" onclick="send()">RANDEVU & WHATSAPP GÖNDER</button>`;
-        res.innerHTML = html;
-        res.style.display = 'block';
+        html += `<div class="robot-badge">🤖 ZENITH ROBOTİK ÖLÇÜM: Milimetrik odaklama ile %100 uyum garantisi.</div>`;
+        html += `<button class="btn" style="background:#25d366; color:#fff;" onclick="send()">WHATSAPP'A GÖNDER</button>`;
+        res.innerHTML = html; res.style.display = 'block';
     }
 
     function send() {
-        let age = document.getElementById('child_age').value;
+        let add = document.getElementById('add_val').value;
         let msg = `*ATLANTİS ELEGANCE OPTİK*%0A%0A` +
                   `*Kategori:* ${mode}%0A` +
-                  (age ? `*Çocuk Yaşı:* ${age}%0A` : "") +
-                  `*Marka:* ${document.getElementById('brand').value}%0A` +
-                  `*SAĞ:* ${document.getElementById('r_sph_s').value}${document.getElementById('r_sph').value} / ${document.getElementById('r_cyl_s').value}${document.getElementById('r_cyl').value} / ${document.getElementById('r_aks').value}%0A` +
-                  `*SOL:* ${document.getElementById('l_sph_s').value}${document.getElementById('l_sph').value} / ${document.getElementById('l_cyl_s').value}${document.getElementById('l_cyl').value} / ${document.getElementById('l_aks').value}%0A%0A` +
-                  `*NOT:* Zenith Robotik ölçüm ile kişiye özel odaklama randevusu istiyorum.`;
+                  (add ? `*ADD (Yakın):* ${add}%0A` : "") +
+                  `*Cam:* ${document.getElementById('brand').value}%0A` +
+                  `*SAĞ:* ${document.getElementById('r_sph_s').value}${document.getElementById('r_sph').value} / ${document.getElementById('r_cyl_s').value}${document.getElementById('r_cyl').value}%0A` +
+                  `*SOL:* ${document.getElementById('l_sph_s').value}${document.getElementById('l_sph').value} / ${document.getElementById('l_cyl_s').value}${document.getElementById('l_cyl').value}%0A%0A` +
+                  `Zenith Robotik ölçüm randevusu talep ediyorum.`;
         window.location.href = `https://wa.me/905326470159?text=${msg}`;
     }
 </script>
