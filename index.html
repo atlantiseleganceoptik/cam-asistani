@@ -3,127 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlantis Elegance Optik - Uzman Analiz</title>
+    <title>Atlantis Elegance Optik - Profesyonel Analiz</title>
     <style>
-        :root { --gold: #d4af37; --black: #0a0a0a; --gray: #1a1a1a; --red: #ff4d4d; }
-        body { background-color: var(--black); color: #fff; font-family: 'Inter', sans-serif; padding: 15px; margin: 0; }
-        .container { max-width: 500px; margin: auto; background: var(--gray); padding: 20px; border-radius: 15px; border: 1px solid var(--gold); }
-        .logo { font-size: 20px; font-weight: bold; color: var(--gold); text-align: center; margin-bottom: 20px; letter-spacing: 2px; }
-        
-        /* İki Kutu Seçimi */
-        .category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .cat-card { border: 1px solid #333; padding: 15px; text-align: center; border-radius: 10px; cursor: pointer; transition: 0.3s; background: #000; }
-        .cat-card.active { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); }
-        .cat-card h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--gold); }
-        .cat-card p { margin: 0; font-size: 10px; color: #888; }
+        :root { --gold: #d4af37; --black: #050505; --gray: #121212; }
+        body { background-color: var(--black); color: #fff; font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
+        .container { max-width: 500px; margin: auto; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; margin: 0; }
+        .subtitle { font-size: 9px; color: #666; letter-spacing: 4px; margin-top: 5px; }
 
-        .form-section { display: none; background: #000; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
-        .eye-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
-        label { font-size: 11px; color: #aaa; display: block; margin-bottom: 4px; }
-        input, select { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #333; background: #111; color: #fff; font-size: 14px; box-sizing: border-box; }
-        .btn { background: var(--gold); color: #000; padding: 15px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 10px; font-size: 16px; }
-        .result-box { display: none; margin-top: 20px; padding: 15px; border: 1px dashed var(--gold); border-radius: 10px; background: rgba(212, 175, 55, 0.05); }
+        .card { 
+            background: var(--gray); border: 1px solid #222; border-radius: 15px; padding: 20px; 
+            margin-bottom: 15px; cursor: pointer; transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .card h3 { margin: 0; color: var(--gold); font-size: 16px; }
+        .card p { margin: 5px 0 0 0; color: #888; font-size: 12px; }
+
+        .form-area { display: none; background: var(--gray); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-top: 20px; }
+        .eye-grid { display: grid; grid-template-columns: 1.2fr 1.2fr 0.8fr; gap: 10px; margin-top: 10px; }
+        .val-group { display: flex; align-items: center; gap: 2px; }
+        .sign-sel { width: 45px !important; padding: 10px 2px !important; text-align: center; background: #222 !important; border-color: var(--gold) !important; font-weight: bold; }
+        
+        label { font-size: 11px; color: #777; display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; font-size: 14px; box-sizing: border-box; }
+        .btn { background: var(--gold); color: #000; padding: 16px; border: none; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 20px; font-size: 16px; }
+        
+        .result-box { display: none; margin-top: 20px; padding: 15px; border: 1px dashed var(--gold); border-radius: 10px; background: rgba(212, 175, 55, 0.1); line-height: 1.6; }
+        .option-box { background: #000; border: 1px solid #444; padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 13px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">ATLANTİS ELEGANCE OPTİK</div>
 
-        <div class="category-grid">
-            <div class="cat-card" id="btn-stok" onclick="selectCat('Stok')">
-                <h4>STOK CAMLAR</h4>
-                <p>Ekonomik & Hızlı</p>
-            </div>
-            <div class="cat-card" id="btn-rx" onclick="selectCat('RX')">
-                <h4>KİŞİYE ÖZEL (RX)</h4>
-                <p>Premium & Hassas</p>
-            </div>
-        </div>
-
-        <div id="main-form" class="form-section">
-            <label id="brand-label">Cam Markası Seçin:</label>
-            <select id="brand" style="margin-bottom:15px;"></select>
-
-            <span style="color:var(--gold); font-weight:bold; font-size:12px;">SAĞ GÖZ (R)</span>
-            <div class="eye-grid">
-                <div><label>SPH</label><input type="text" id="r_sph" placeholder="0.00"></div>
-                <div><label>CYL</label><input type="text" id="r_cyl" placeholder="0.00"></div>
-                <div><label>AKS</label><input type="number" id="r_aks" placeholder="0"></div>
-            </div>
-
-            <div style="height:15px;"></div>
-
-            <span style="color:var(--gold); font-weight:bold; font-size:12px;">SOL GÖZ (L)</span>
-            <div class="eye-grid">
-                <div><label>SPH</label><input type="text" id="l_sph" placeholder="0.00"></div>
-                <div><label>CYL</label><input type="text" id="l_cyl" placeholder="0.00"></div>
-                <div><label>AKS</label><input type="number" id="l_aks" placeholder="0"></div>
-            </div>
-
-            <button class="btn" onclick="analyze()">ANALİZ ET</button>
-        </div>
-
-        <div id="result" class="result-box">
-            <h4 style="margin:0; color:var(--gold);">ZENITH ANALİZ SONUCU</h4>
-            <p id="report-text" style="font-size:13px; line-height:1.6;"></p>
-            <button class="btn" style="background:#25d366; color:#fff;" onclick="sendToWhatsApp()">WHATSAPP'A GÖNDER</button>
-        </div>
+<div class="container">
+    <div class="header">
+        <h1 class="logo">ATLANTİS ELEGANCE OPTİK</h1>
+        <div class="subtitle">AI & TECHNOLOGY SYSTEMS</div>
     </div>
 
-    <script>
-        let selectedType = "";
+    <div class="card" onclick="openForm('Stok')">
+        <h3>📦 STOK CAMLAR</h3>
+        <p>Hızlı Teslimat & Ekonomik Çözümler</p>
+    </div>
 
-        function selectCat(type) {
-            selectedType = type;
-            document.getElementById('btn-stok').classList.remove('active');
-            document.getElementById('btn-rx').classList.remove('active');
-            document.getElementById('btn-' + type.toLowerCase()).classList.add('active');
-            
-            let brandSelect = document.getElementById('brand');
-            brandSelect.innerHTML = "";
-            
-            let brands = type === 'Stok' 
-                ? ["Ekonomik Stok Cam", "Mavi Işık Korumalı Stok"] 
-                : ["Zeiss RX Special", "Seiko Kişiye Özel", "Hoya Premium RX", "Novax Freeform"];
-            
-            brands.forEach(b => {
-                let opt = document.createElement("option");
-                opt.value = b; opt.innerText = b;
-                brandSelect.appendChild(opt);
-            });
+    <div class="card" onclick="openForm('RX')">
+        <h3>💎 KİŞİYE ÖZEL (RX)</h3>
+        <p>Yüksek Teknoloji & Premium Konfor</p>
+    </div>
 
-            document.getElementById('main-form').style.display = 'block';
-            document.getElementById('result').style.display = 'none';
-        }
+    <div class="card" onclick="openForm('MiyoSmart')">
+        <h3>🛡️ MİYOSMART MERKEZİ</h3>
+        <p>Çocuklar İçin Miyopi Kontrol Tedavisi</p>
+    </div>
 
-        function analyze() {
-            let rs = Math.abs(parseFloat(document.getElementById('r_sph').value) || 0);
-            let rc = Math.abs(parseFloat(document.getElementById('r_cyl').value) || 0);
-            let ls = Math.abs(parseFloat(document.getElementById('l_sph').value) || 0);
-            let lc = Math.abs(parseFloat(document.getElementById('l_cyl').value) || 0);
-            
-            let maxVal = Math.max(rs, ls, rc, lc);
-            let index = "1.56 (%30 İnce)";
-            let note = "Standart numaralar.";
+    <div id="form-area" class="form-area">
+        <h4 id="form-title" style="color:var(--gold); margin-top:0;">Analiz Parametreleri</h4>
+        
+        <label>Cam Markası / Kaplama:</label>
+        <select id="brand" style="margin-bottom:15px;"></select>
 
-            // Senin inceltme kuralların (CYL hassasiyeti eklendi)
-            if (maxVal > 2.00 || rc > 2.00 || lc > 2.00) { index = "1.67 (%60 İnce)"; note = "Yüksek astigmat/numara nedeniyle yüksek inceltme şart."; }
-            if (maxVal > 4.00 || rc > 3.00 || lc > 3.00) { index = "1.74 (%75 İnce)"; note = "Maksimum estetik için en ince cam teknolojisi."; }
-            if (maxVal <= 2.00 && rc <= 2.00 && lc <= 2.00) { index = "1.56 (%30 İnce)"; note = "Numaralarınız ekonomik seri için uygun."; }
+        <div id="miyo-extra" style="display:none; margin-bottom:15px;">
+            <label>Çocuğunuzun Yaşı:</label>
+            <input type="number" id="child_age" placeholder="Örn: 9">
+        </div>
 
-            document.getElementById('report-text').innerHTML = `<b>Kategori:</b> ${selectedType}<br><b>Önerilen:</b> ${index}<br><b>Uzman Notu:</b> ${note}`;
-            document.getElementById('result').style.display = 'block';
-        }
-
-        function sendToWhatsApp() {
-            let msg = `*ATLANTİS ELEGANCE OPTİK*%0A%0A` +
-                      `*Kategori:* ${selectedType}%0A` +
-                      `*Marka:* ${document.getElementById('brand').value}%0A` +
-                      `*SAĞ:* ${document.getElementById('r_sph').value} / ${document.getElementById('r_cyl').value} / ${document.getElementById('r_aks').value}%0A` +
-                      `*SOL:* ${document.getElementById('l_sph').value} / ${document.getElementById('l_cyl').value} / ${document.getElementById('l_aks').value}%0A%0A` +
-                      `Zenith Robotik ölçüm randevusu istiyorum.`;
-            window.location.href = `https://wa.me/905326470159?text=${msg}`;
-        }
-    </script>
-</body>
-</html>
+        <span style="color:var(--gold); font-size:12px; font-weight:bold;">SAĞ GÖZ (R)</span>
+        <div class="
