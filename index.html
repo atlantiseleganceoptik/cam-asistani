@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith V33 | Ultra-Tech Edition</title>
+    <title>Zenith V34 | Auto-Focus Edition</title>
     <style>
         :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; }
-        body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; }
+        body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; scroll-behavior: smooth; }
         
-        /* HUB - GÖRSELDEKİ ANA SAYFA */
+        /* HUB - ANA SAYFA */
         #zenith-hub { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; text-align: center; }
         .hub-title { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 5px; margin-bottom: 5px; text-transform: uppercase; }
         .hub-subtitle { font-size: 10px; color: var(--grey); letter-spacing: 3px; margin-bottom: 35px; font-weight: bold; }
@@ -16,14 +16,14 @@
         .main-menu-item { 
             width: 100%; max-width: 340px; background: var(--dark); border: 1.5px solid #333; 
             border-radius: 20px; padding: 22px 15px; margin-bottom: 12px; cursor: pointer;
-            transition: 0.3s; display: flex; flex-direction: column; align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
         .main-menu-item.active-border { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
         .main-menu-item span { font-size: 32px; margin-bottom: 12px; }
         .main-menu-item h3 { margin: 0; font-size: 17px; font-weight: 900; letter-spacing: 1px; }
-        .main-menu-item p { margin: 6px 0 0; font-size: 10px; color: var(--gold); font-weight: 800; letter-spacing: 1px; }
+        .main-menu-item p { margin: 6px 0 0; font-size: 10px; color: var(--gold); font-weight: 800; }
 
-        /* ANALİZ VE INPUTS */
+        /* ANALİZ PANELİ */
         #zenith-app { display: none; padding: 20px; animation: fadeIn 0.4s ease; }
         .back-btn { background: #1a1a1a; border: 1.5px solid var(--gold); color: var(--gold); padding: 10px 18px; border-radius: 12px; font-size: 11px; margin-bottom: 20px; cursor: pointer; font-weight: 900; }
 
@@ -34,22 +34,23 @@
         .input-box { background: #0c0c0c; border-radius: 25px; padding: 20px; border: 1px solid #222; }
         .eye-title { color: var(--gold); font-size: 12px; font-weight: 900; text-align: center; margin: 15px 0; letter-spacing: 2px; }
         .ctrl-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; background: #000; padding: 12px; border-radius: 15px; border: 1.1px solid #1a1a1a; }
-        .btn-v { width: 48px; height: 48px; border-radius: 14px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 26px; cursor: pointer; }
-        .val-v { font-size: 22px; font-weight: 900; width: 85px; text-align: center; color: #fff; }
+        .btn-v { width: 48px; height: 48px; border-radius: 14px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 26px; }
+        .val-v { font-size: 22px; font-weight: 900; width: 85px; text-align: center; }
 
-        /* ANALİZ SONUÇLARI - FULL TEKNOLOJİ */
-        .comp-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2); }
-        .comp-tag { position: absolute; top: -14px; right: 25px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 6px 14px; border-radius: 8px; text-transform: uppercase; border: 1px solid #000; }
-        .comp-title { font-size: 20px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; letter-spacing: 1px; }
+        /* SONUÇLAR */
+        #screen-result { display: none; }
+        .comp-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; }
+        .comp-tag { position: absolute; top: -14px; right: 25px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 6px 14px; border-radius: 8px; text-transform: uppercase; }
+        .comp-title { font-size: 20px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; }
 
         .feature-item { margin-bottom: 18px; display: flex; align-items: flex-start; text-align: left; }
-        .feature-item i { color: var(--gold); margin-right: 14px; font-size: 22px; margin-top: 2px; }
-        .feature-item .text b { color: #fff; display: block; font-size: 15px; margin-bottom: 4px; letter-spacing: 0.5px; }
-        .feature-item .text p { color: #bbb; margin: 0; font-size: 12.5px; line-height: 1.5; }
+        .feature-item i { color: var(--gold); margin-right: 14px; font-size: 20px; }
+        .feature-item b { color: #fff; display: block; font-size: 15px; margin-bottom: 4px; }
+        .feature-item p { color: #bbb; margin: 0; font-size: 12.5px; line-height: 1.5; }
 
-        .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3); }
+        .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -57,19 +58,10 @@
 <div id="zenith-hub">
     <div class="hub-title">ATLANTİS ELEGANCE</div>
     <div class="hub-subtitle">ZENİTH ROBOTİC OPTİC SYSTEMS</div>
-    
-    <div class="main-menu-item active-border" onclick="navTo('Progressive')">
-        <span>👓</span><h3>PROGRESSIVE</h3><p>UZAK - YAKIN BİR ARADA</p>
-    </div>
-    <div class="main-menu-item" onclick="navTo('Tek Odaklı')">
-        <span>👁️</span><h3>TEK ODAKLI</h3><p>KRİSTAL NETLİK TEKNOLOJİSİ</p>
-    </div>
-    <div class="main-menu-item" onclick="navTo('MiyoSmart')">
-        <span>🛡️</span><h3>MIYOSMART</h3><p>MİYOPİ DURDURMA TEDAVİSİ</p>
-    </div>
-    <div class="main-menu-item" onclick="navTo('Ofis')">
-        <span>💻</span><h3>OFFICE / MASA BAŞI</h3><p>YAKIN VE ORTA MESAFE</p>
-    </div>
+    <div class="main-menu-item active-border" onclick="navTo('Progressive')"><span>👓</span><h3>PROGRESSIVE</h3><p>UZAK - YAKIN BİR ARADA</p></div>
+    <div class="main-menu-item" onclick="navTo('Tek Odaklı')"><span>👁️</span><h3>TEK ODAKLI</h3><p>KRİSTAL NETLİK TEKNOLOJİSİ</p></div>
+    <div class="main-menu-item" onclick="navTo('MiyoSmart')"><span>🛡️</span><h3>MIYOSMART</h3><p>MİYOPİ DURDURMA TEDAVİSİ</p></div>
+    <div class="main-menu-item" onclick="navTo('Ofis')"><span>💻</span><h3>OFFICE / MASA BAŞI</h3><p>YAKIN VE ORTA MESAFE</p></div>
 </div>
 
 <div id="zenith-app">
@@ -83,19 +75,21 @@
             <div class="brand-card" id="b-novax" onclick="selectBrand('Novax')">NOVAX</div>
         </div>
         <div id="input-area" style="display:none;">
-            <div class="input-box"><div id="inputs-container"></div><button class="btn-main" onclick="showResults()" style="background:var(--cyan); margin-top:20px;">ZENITH ROBOTİK ANALİZİ BAŞLAT</button></div>
+            <div class="input-box">
+                <div id="inputs-container"></div>
+                <button class="btn-main" onclick="showResults()" style="background:var(--cyan); margin-top:20px;">ZENITH ANALİZİ BAŞLAT</button>
+            </div>
         </div>
     </div>
 
     <div id="screen-result" class="screen">
-        <div id="result-content">
-            <div class="comp-card">
+        <div id="result-anchor"></div> <div id="result-content">
+            <div class="comp-card" id="premium-card">
                 <div class="comp-tag">ZENITH LABORATORY RX</div>
                 <span class="comp-title" id="res-pre-title">...</span>
                 <div id="res-pre-features"></div>
                 <button class="btn-main" onclick="toWA('Premium')">BİLGİ VE RANDEVU ALIN</button>
             </div>
-
             <div class="comp-card">
                 <div class="comp-tag" style="background:#222; color:var(--gold);">PROFESYONEL SEÇENEK</div>
                 <span class="comp-title" id="res-std-title">...</span>
@@ -114,32 +108,31 @@
         'Zeiss': {
             'Progressive': {
                 c1: ['SmartLife Individual 3', [
-                    ['💎 Yapay Zeka (AI) Tasarımı', 'Günlük dijital alışkanlıklarınız AI tarafından analiz edilerek milimetrik olarak camın her noktasına işlenir.'],
-                    ['🎯 Lazer Mikron Kesim', 'En keskin görüş için cam yüzeyine lazerle numara işleme teknolojisi uygulanır.'],
-                    ['🌌 Tam Panoramik Görüş', 'Uzak, orta ve yakın mesafeler arasında pürüzsüz ve en geniş koridor geçişi sağlar.']
+                    ['💎 AI Tasarımı', 'Yapay zeka ile kişiselleştirilmiş en geniş görüş alanı.'],
+                    ['🎯 Lazer Kesim', 'Mikron hassasiyetinde lazerle işlenen odak noktaları.'],
+                    ['🌌 Tam Panoramik', 'Bozulmasız ve pürüzsüz mesafeler arası geçiş.']
                 ]],
                 c2: ['SmartLife Superb', [
-                    ['✅ Kusursuz Çerçeve Uyumu', 'Yüz hatlarınıza ve seçtiğiniz çerçeveye özel lazer odaklama ile hızlı adaptasyon.'],
-                    ['🛡️ Kristal Netlik', 'Kenar alanlardaki dijital daralmayı minimize eden yüzey işleme teknolojisi.'],
-                    ['👁️ Dijital İkiz Sistemi', 'Sizin ölçülerinizle oluşturulan simülasyon sayesinde hatasız üretim.']
+                    ['✅ Çerçeve Uyumu', 'Çerçevenin duruş açısına özel lazer optimizasyonu.'],
+                    ['🛡️ Kristal Netlik', 'Kenar alanlardaki bulanıklığı yok eden özel yüzey.'],
+                    ['👁️ Dijital İkiz', 'Ölçülerinizle birebir eşleşen simülasyon üretimi.']
                 ]]
             }
         },
         'Hoya': {
             'Progressive': {
                 c1: ['MySelf / iD Lifestyle 3', [
-                    ['🔬 3D Ölçümleme', 'Gözlerinizin doğal hareketleri Zenith robotu tarafından 3D olarak analiz edilip işlenir.'],
-                    ['🌪️ Sarsılmaz Denge', 'Yürürken veya hareket halindeyken oluşan yer kayması hissini %100 ortadan kaldırır.'],
-                    ['📊 %40 Geniş Koridor', 'Standart progresif camlara oranla %40 daha geniş okuma alanı sunar.']
+                    ['🔬 3D Analiz', 'Robotik 3D ölçümleme ile hatasız odak noktaları.'],
+                    ['🌪️ Sarsılmaz Denge', 'Hareket halindeyken oluşan yer kayması hissini sıfırlar.'],
+                    ['📊 %40 Geniş Alan', 'En geniş okuma koridoru teknolojisi.']
                 ]],
                 c2: ['Balansis Advanced', [
-                    ['⚡ Hızlı Adaptasyon', 'Gözlerinizin yeni numaralara alışma süresini en aza indiren dengeleme algoritması.'],
-                    ['💎 Elmas Sertliğinde Kaplama', 'Çizilme ve kirlenmeye karşı en yüksek dirençli moleküler yüzey yapısı.'],
-                    ['🎯 Dijital Fokus', 'Odaklar arası yumuşak geçiş sağlayan lazer tabanlı üretim.']
+                    ['⚡ Hızlı Adaptasyon', 'Yeni numaralara anında alışma sağlayan dengeleme.'],
+                    ['💎 Elmas Kaplama', 'Çizilmeye karşı moleküler dirençli sert yüzey.'],
+                    ['🎯 Dijital Fokus', 'Odaklar arası yumuşak geçiş sağlayan üretim.']
                 ]]
             }
         }
-        // Diğer markalar (Seiko, Novax) da benzer detay seviyesiyle kod içindedir.
     };
 
     function navTo(t) {
@@ -186,30 +179,30 @@
 
     function showResults() {
         let data = (opticData[currentBrand] && opticData[currentBrand][currentFlow]) || 
-                   { c1: [currentBrand + ' Premium RX', [['💎 Lazer Kesim', 'AI optimizasyonlu en üst seviye cam.'], ['⚡ AI Optimizasyonu', 'Kişiye özel tasarım.']]], 
-                     c2: [currentBrand + ' Advanced', [['✅ Yüksek Konfor', 'Hızlı adaptasyon.'], ['🔍 Dijital Yüzey', 'Konforlu kullanım.']]] };
+                   { c1: [currentBrand + ' Premium RX', [['💎 Lazer Kesim', 'AI optimizasyonlu cam.'], ['⚡ AI', 'Kişiye özel tasarım.']]], 
+                     c2: [currentBrand + ' Advanced', [['✅ Konfor', 'Hızlı adaptasyon.'], ['🔍 Dijital', 'Konforlu kullanım.']]] };
         
-        // 1. Cam İçerik
         document.getElementById('res-pre-title').innerText = data.c1[0];
         document.getElementById('res-pre-features').innerHTML = data.c1[1].map(f => `
             <div class="feature-item"><i>★</i><div class="text"><b>${f[0]}</b><p>${f[1]}</p></div></div>
         `).join('');
         
-        // 2. Cam İçerik
         document.getElementById('res-std-title').innerText = data.c2[0];
         document.getElementById('res-std-features').innerHTML = data.c2[1].map(f => `
             <div class="feature-item"><i>✔</i><div class="text"><b>${f[0]}</b><p>${f[1]}</p></div></div>
         `).join('');
 
-        document.getElementById('screen-detail').classList.remove('active');
-        document.getElementById('screen-result').classList.add('active');
-        window.scrollTo(0,0);
+        // SONUÇLARI GÖSTER VE KAYDIR
+        document.getElementById('screen-result').style.display = 'block';
+        
+        setTimeout(() => {
+            document.getElementById('premium-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 
     function toWA(t) {
         let title = t === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
-        let msg = `*Zenith Robotik Analiz*%0A*Marka:* ${currentBrand}%0A*Ürün:* ${title}%0A*Göz Değerleri:* R: ${vals.r_sph}/${vals.r_cyl} Ax:${vals.r_aks} | L: ${vals.l_sph}/${vals.l_cyl} Ax:${vals.l_aks}`;
-        window.location.href = "https://wa.me/905326470159?text=" + msg;
+        window.location.href = "https://wa.me/905326470159?text=Zenith Analiz: " + title;
     }
 </script>
 </body>
