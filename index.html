@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith V41 | Index Master</title>
+    <title>Zenith V42 | Precision Index</title>
     <style>
         :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; }
         body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; scroll-behavior: smooth; }
@@ -157,10 +157,10 @@
 
     function getRecommendedIndex() {
         let maxAbs = Math.max(Math.abs(vals.r_sph) + Math.abs(vals.r_cyl), Math.abs(vals.l_sph) + Math.abs(vals.l_cyl));
-        if (maxAbs <= 2.00) return "1.50 Standart İndeks";
-        if (maxAbs <= 4.00) return "1.61 İnce %35";
-        if (maxAbs <= 6.00) return "1.67 Çok İnce %45";
-        return "1.74 Ultra İnce %55";
+        if (maxAbs <= 2.00) return "1.56 İndeks %30 İnce";
+        if (maxAbs <= 4.00) return "1.61 İndeks %40 İnce";
+        if (maxAbs <= 6.00) return "1.67 İndeks %60 İnce";
+        return "1.74 İndeks %75 İnce";
     }
 
     function showResults() {
@@ -185,7 +185,7 @@
         let title = t === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
         let index = getRecommendedIndex();
         let addStr = (vals.r_add || vals.l_add) ? `%0A*ADD:* R:${vals.r_add.toFixed(2)} / L:${vals.l_add.toFixed(2)}` : "";
-        let msg = `*Zenith Analiz*%0A*Ürün:* ${title}%0A*İndeks:* ${index}%0A*R:* ${vals.r_sph.toFixed(2)}/${vals.r_cyl.toFixed(2)} Ax:${vals.r_aks}${addStr}`;
+        let msg = `*Zenith Analiz*%0A*Ürün:* ${title}%0A*Tavsiye:* ${index}%0A*R:* ${vals.r_sph.toFixed(2)}/${vals.r_cyl.toFixed(2)} Ax:${vals.r_aks}${addStr}`;
         window.location.href = "https://wa.me/905326470159?text=" + msg;
     }
 </script>
