@@ -3,62 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith AI V27 - Experience Edition</title>
+    <title>Zenith AI V28 - Sales Closer</title>
     <style>
-        :root { --gold: #d4af37; --black: #050505; --gray: #111111; --cyan: #00f2ff; --white: #ffffff; }
+        :root { --gold: #d4af37; --black: #050505; --dark-gray: #151515; --cyan: #00f2ff; --white: #ffffff; }
         body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; }
         
-        .screen { display: none; min-height: 100vh; padding: 25px; box-sizing: border-box; animation: fadeIn 0.4s ease; }
+        .screen { display: none; min-height: 100vh; padding: 20px; box-sizing: border-box; animation: fadeIn 0.4s ease; }
         .screen.active { display: block; }
 
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
-        .logo { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 6px; text-transform: uppercase; margin: 0; }
-        .subtitle { font-size: 10px; color: #777; letter-spacing: 4px; margin-top: 8px; font-weight: bold; }
+        .header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        .subtitle { font-size: 9px; color: #777; letter-spacing: 3px; margin-top: 5px; font-weight: bold; }
 
         /* Ana Menü */
-        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .menu-item { background: linear-gradient(145deg, #1a1a1a, #080808); border: 1px solid #333; border-radius: 20px; padding: 35px 20px; text-align: center; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .menu-item:active { transform: scale(0.96); border-color: var(--gold); }
-        .menu-item i { display: block; font-size: 36px; margin-bottom: 12px; color: var(--gold); }
-        .menu-item h3 { margin: 0; font-size: 20px; color: #fff; letter-spacing: 2px; font-weight: 800; }
-        .menu-item p { margin: 10px 0 0; font-size: 12px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .menu-item { background: linear-gradient(145deg, #1a1a1a, #080808); border: 1px solid #333; border-radius: 20px; padding: 30px 15px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .menu-item i { display: block; font-size: 32px; margin-bottom: 10px; color: var(--gold); }
+        .menu-item h3 { margin: 0; font-size: 18px; color: #fff; letter-spacing: 1px; font-weight: 800; }
+        .menu-item p { margin: 8px 0 0; font-size: 11px; color: var(--gold); font-weight: 600; text-transform: uppercase; }
 
-        /* Geri Butonu */
-        .back-btn { background: #1a1a1a; border: 1.5px solid var(--gold); color: var(--gold); padding: 12px 20px; border-radius: 12px; font-size: 11px; cursor: pointer; margin-bottom: 20px; font-weight: 900; letter-spacing: 1px; }
+        .back-btn { background: #1a1a1a; border: 1.5px solid var(--gold); color: var(--gold); padding: 10px 15px; border-radius: 10px; font-size: 10px; cursor: pointer; margin-bottom: 15px; font-weight: 900; }
 
-        /* Marka Seçimi - DAHA NET VE OKUNAKLI */
-        .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-        .brand-card { background: #151515; border: 2px solid #333; border-radius: 15px; padding: 25px 10px; text-align: center; color: #fff; font-size: 16px; font-weight: 900; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
-        .brand-card.active { border-color: var(--gold); background: rgba(212, 175, 55, 0.15); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        /* Marka Seçimi */
+        .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .brand-card { background: #111; border: 2px solid #333; border-radius: 15px; padding: 20px 10px; text-align: center; color: #fff; font-size: 15px; font-weight: 900; cursor: pointer; }
+        .brand-card.active { border-color: var(--gold); background: rgba(212, 175, 55, 0.2); }
 
         /* Numara Girişi */
-        .input-box { background: #0c0c0c; border-radius: 24px; padding: 20px; border: 1px solid #222; margin-top: 20px; }
-        .eye-label { font-size: 13px; color: var(--gold); font-weight: 900; text-align: center; margin: 15px 0; letter-spacing: 3px; }
-        .ctrl-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; background: #000; padding: 12px 18px; border-radius: 18px; border: 1px solid #1a1a1a; }
-        .btn-v { width: 50px; height: 50px; border-radius: 15px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 24px; cursor: pointer; font-weight: bold; }
-        .val-v { font-size: 22px; font-weight: 900; width: 90px; text-align: center; color: #fff; }
+        .input-box { background: #0c0c0c; border-radius: 20px; padding: 15px; border: 1px solid #222; margin-top: 15px; }
+        .eye-label { font-size: 11px; color: var(--gold); font-weight: 900; text-align: center; margin: 10px 0; letter-spacing: 2px; }
+        .ctrl-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; background: #000; padding: 8px 12px; border-radius: 15px; border: 1px solid #1a1a1a; }
+        .btn-v { width: 45px; height: 45px; border-radius: 12px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 22px; cursor: pointer; }
+        .val-v { font-size: 20px; font-weight: 900; width: 80px; text-align: center; color: #fff; }
 
-        /* SONUÇ KARTLARI */
-        .comp-card { background: linear-gradient(160deg, #121212 0%, #050505 100%); border: 1px solid #333; border-radius: 28px; padding: 25px; margin-bottom: 30px; border-top: 5px solid var(--gold); position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-        .comp-title { font-size: 18px; font-weight: 900; color: var(--gold); margin-bottom: 15px; display: block; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #222; padding-bottom: 12px; }
-        .spec-line { font-size: 15px; color: var(--cyan); font-weight: 900; margin: 15px 0; display: block; }
+        /* SONUÇ KARTLARI - YENİ NESİL İKNA TASARIMI */
+        .comp-card { background: #0c0c0c; border: 2px solid var(--gold); border-radius: 25px; padding: 20px; margin-bottom: 25px; position: relative; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); }
+        .comp-tag { position: absolute; top: -12px; right: 20px; background: var(--gold); color: #000; font-size: 9px; font-weight: 900; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; }
         
-        .section-title { font-size: 12px; color: var(--gold); font-weight: 900; text-transform: uppercase; margin-top: 25px; margin-bottom: 12px; display: flex; align-items: center; }
-        .section-title::after { content: ""; flex: 1; height: 1px; background: #333; margin-left: 10px; }
+        .comp-title { font-size: 17px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; display: block; }
+        
+        .spec-line { font-size: 14px; color: var(--cyan); font-weight: 900; margin-bottom: 15px; display: block; border-left: 3px solid var(--cyan); padding-left: 10px; }
 
-        .spec-list { margin: 15px 0; padding: 0; list-style: none; }
-        .spec-list li { font-size: 13px; color: #ddd; margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.5; font-weight: 500; }
-        .spec-list li b { color: #fff; display: block; margin-bottom: 2px; }
-        .spec-list li i { color: var(--gold); margin-right: 12px; font-size: 16px; margin-top: 3px; }
+        .feature-box { margin-bottom: 20px; }
+        .feature-item { margin-bottom: 15px; display: flex; align-items: flex-start; }
+        .feature-item i { color: var(--gold); margin-right: 12px; font-size: 16px; margin-top: 2px; }
+        .feature-item .text b { color: #fff; display: block; font-size: 14px; margin-bottom: 3px; }
+        .feature-item .text p { color: #aaa; margin: 0; font-size: 12px; line-height: 1.4; }
 
-        .robot-data { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #000; padding: 15px; border-radius: 18px; margin: 20px 0; border: 1px solid #222; }
-        .data-item { font-size: 10px; color: #666; font-weight: bold; }
-        .data-item span { display: block; color: var(--cyan); font-size: 12px; margin-top: 4px; font-weight: 800; }
+        .quote-box { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 12px; font-style: italic; font-size: 11px; color: #888; border-left: 2px solid var(--gold); margin-bottom: 20px; }
 
-        .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 18px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; margin-top: 15px; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2); }
-        .btn-main:active { transform: translateY(3px); box-shadow: none; }
+        .btn-main { background: var(--gold); color: #000; padding: 18px; border: none; border-radius: 15px; width: 100%; font-weight: 900; font-size: 13px; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -71,29 +67,17 @@
             <div class="subtitle">ZENITH ROBOTIC OPTIC LABORATORY</div>
         </div>
         <div class="menu-grid">
-            <div class="menu-item" onclick="navTo('Progressive')">
-                <i>👓</i><h3>PROGRESSIVE</h3><p>Uzak - Yakın Bir Arada</p>
-            </div>
-            <div class="menu-item" onclick="navTo('Tek Odaklı')">
-                <i>👁️</i><h3>TEK ODAKLI</h3><p>Maksimum Netlik</p>
-            </div>
-            <div class="menu-item" onclick="navTo('MiyoSmart')">
-                <i>🛡️</i><h3>MIYOSMART</h3><p>Çocuk Miyopi Tedavisi</p>
-            </div>
-            <div class="menu-item" onclick="navTo('Ofis/Masa')">
-                <i>💻</i><h3>OFFICE / MASA BAŞI</h3><p>Ekran Konforu</p>
-            </div>
+            <div class="menu-item" onclick="navTo('Progressive')"><i>👓</i><h3>PROGRESSIVE</h3><p>Kristal Netliğinde Uzak & Yakın</p></div>
+            <div class="menu-item" onclick="navTo('Tek Odaklı')"><i>👁️</i><h3>TEK ODAKLI</h3><p>Kişiye Özel Yüksek Çözünürlük</p></div>
+            <div class="menu-item" onclick="navTo('MiyoSmart')"><i>🛡️</i><h3>MIYOSMART</h3><p>Akıllı Çocuk Miyopi Tedavisi</p></div>
+            <div class="menu-item" onclick="navTo('Ofis/Masa')"><i>💻</i><h3>OFFICE / MASA BAŞI</h3><p>Maksimum Ekran Konforu</p></div>
         </div>
     </div>
 
     <div id="screen-detail" class="screen">
         <button class="back-btn" onclick="navTo('home')">← ANA MENÜ</button>
-        <div class="header" style="margin-bottom: 10px; border:none;">
-            <h2 id="flow-title" style="color:var(--gold); margin:0; font-size:20px; letter-spacing:2px; font-weight:900;">ZENITH ANALİZ</h2>
-        </div>
-
         <div id="brand-selection">
-            <div class="eye-label" style="color:#666; margin-top:0;">MARKA SEÇİMİ</div>
+            <div class="eye-label">LENS TEKNOLOJİSİ SEÇİN</div>
             <div class="brand-grid" id="brand-container">
                 <div class="brand-card" id="b-zeiss" onclick="selectBrand('Zeiss')">ZEISS</div>
                 <div class="brand-card" id="b-seiko" onclick="selectBrand('Seiko')">SEIKO</div>
@@ -101,50 +85,39 @@
                 <div class="brand-card" id="b-novax" onclick="selectBrand('Novax')">NOVAX</div>
             </div>
         </div>
-
         <div id="input-area" style="display:none;">
-            <div class="input-box">
-                <div id="inputs-container"></div>
-                <button class="btn-main" onclick="showResults()" style="background:var(--cyan); color:#000;">ROBOTİK ANALİZİ BAŞLAT</button>
-            </div>
+            <div class="input-box"><div id="inputs-container"></div><button class="btn-main" onclick="showResults()" style="background:var(--cyan);">ROBOTİK ANALİZİ BAŞLAT</button></div>
         </div>
     </div>
 
     <div id="screen-result" class="screen">
-        <button class="back-btn" onclick="navTo('detail')">← GİRİŞE DÖN</button>
-        <div class="header" style="border:none; margin-bottom:10px;"><h2 style="color:var(--gold); margin:0; font-size:20px; letter-spacing:2px; font-weight:900;">ANALİZ RAPORU</h2></div>
+        <button class="back-btn" onclick="navTo('detail')">← ANALİZE DÖN</button>
+        <div class="header" style="border:none;"><h2 style="color:var(--gold); margin:0; font-size:20px; font-weight:900;">ZENITH ANALİZ RAPORU</h2></div>
         
         <div id="result-content">
             
-            <div class="comp-card">
-                <span class="comp-title" id="res-pre-title">PREMIUM ÜST SEGMENT</span>
+            <div class="comp-card" id="pre-card">
+                <div class="comp-tag" id="pre-tag">EN İYİ ADAPTASYON</div>
+                <span class="comp-title" id="res-pre-title">ZENITH PREMIUM RX</span>
                 <span class="spec-line" id="res-inc">...</span>
                 
-                <div class="section-title">Göz Konforu ve Avantajlar</div>
-                <ul class="spec-list" id="res-features"></ul>
-
-                <div class="section-title">Neden Bu Lensi Seçmelisiniz?</div>
-                <p style="font-size:13px; color:#bbb; line-height:1.6; margin:0;">Bu lens, dijital ölçümleme ile odağınızın tam merkezine işlenir. Bu sayede ilk taktığınız andan itibaren <b>sıfır adaptasyon sorunu</b> ve <b>kesintisiz görüş</b> sağlar.</p>
-
-                <div class="section-title">Zenith Robotik Verileri</div>
-                <div class="robot-data">
-                    <div class="data-item">Hata Payı<span>±0.01 mm</span></div>
-                    <div class="data-item">Vertex Optimizasyonu<span>Aktif</span></div>
-                    <div class="data-item">Görüş Açısı<span>%100 Panoramik</span></div>
-                    <div class="data-item">Üretim Standardı<span>AI-FreeForm</span></div>
-                </div>
+                <div class="feature-box" id="res-features"></div>
+                
+                <div class="quote-box" id="res-quote">"Bu lens ile dünyayı 4K kalitesinde izliyormuşum gibi hissediyorum."</div>
                 
                 <button class="btn-main" onclick="toWA('Premium')">BİLGİ VE RANDEVU İÇİN BİZE ULAŞIN</button>
             </div>
 
-            <div class="comp-card" id="std-card" style="border-top-color:#444; opacity:0.8;">
-                <span class="comp-title" id="res-std-title" style="color:#888;">STANDART EKONOMİK</span>
-                <ul class="spec-list">
-                    <li><i>⚠️</i> <b>Dar Görüş Alanı:</b> Yan bakışlarda hafif bulanıklık hissedilebilir.</li>
-                    <li><i>⚠️</i> <b>Geçiş Süresi:</b> Yeni odağınıza alışmanız zaman alabilir.</li>
-                    <li><i>⚠️</i> <b>Temel Kaplama:</b> Çizilme ve kirlenmeye karşı standart direnç.</li>
-                </ul>
-                <button class="btn-main" onclick="toWA('Standart')" style="background:#222; color:#888;">BİLGİ VE RANDEVU İÇİN BİZE ULAŞIN</button>
+            <div class="comp-card" id="std-card" style="border-color:#444;">
+                <div class="comp-tag" style="background:#444; color:#fff;">TEMEL ÇÖZÜM</div>
+                <span class="comp-title" id="res-std-title" style="color:var(--gold);">STANDART EKONOMİK</span>
+                
+                <div class="feature-box">
+                    <div class="feature-item"><i>⚠️</i><div class="text"><b>Merkez Odaklı Görüş</b><p>Sadece camın merkezinde tam netlik sağlar, kenarlarda hafif daralma olabilir.</p></div></div>
+                    <div class="feature-item"><i>⚠️</i><div class="text"><b>Standart Alışma Süreci</b><p>Gözlerinizin yeni numaralara uyum sağlaması birkaç gün sürebilir.</p></div></div>
+                </div>
+                
+                <button class="btn-main" onclick="toWA('Standart')">BİLGİ VE RANDEVU İÇİN BİZE ULAŞIN</button>
             </div>
         </div>
     </div>
@@ -156,26 +129,38 @@
     let vals = { r_sph: 0, r_cyl: 0, r_aks: 0, l_sph: 0, l_cyl: 0, l_aks: 0 };
 
     const lensInfo = {
-        'Zeiss': [
-            '<b>Yüksek Çözünürlük:</b> Görüntüleri çok daha canlı ve gerçek renklerinde görürsünüz.',
-            '<b>Akıllı Koruma:</b> Hem güneşin zararlı ışınlarından hem de dijital yorgunluktan korur.',
-            '<b>Premium Kaplama:</b> Dünyanın en pürüzsüz yüzeyi ile neredeyse hiç kirlenmez.'
-        ],
-        'Seiko': [
-            '<b>İnce ve Estetik:</b> Numaralarınız ne olursa olsun camlarınız her zaman zarif görünür.',
-            '<b>Sürüş Konforu:</b> Gece sürüşlerinde karşıdan gelen rahatsız edici ışıkları emer.',
-            '<b>Kişiye Özel:</b> Sadece sizin bakış açınıza göre özel olarak el işçiliği hassasiyetinde üretilir.'
-        ],
-        'Hoya':  [
-            '<b>Sarsılmaz Görüş:</b> Baş dönmesi veya yer kayması hissini tamamen ortadan kaldırır.',
-            '<b>Elmas Direnç:</b> Çizilmelere karşı en yüksek direnci gösteren özel kaplama teknolojisi.',
-            '<b>Geniş Açı:</b> Odak noktasının dışındaki alanlarda bile netliğinizi korur.'
-        ],
-        'Novax': [
-            '<b>Dijital Fokus:</b> Bilgisayar ve telefon ekranlarında gözleriniz hiç yorulmaz.',
-            '<b>HD Kalite:</b> Kontrastı artırarak objeleri çok daha keskin görmenizi sağlar.',
-            '<b>Su Tutmayan Yüzey:</b> Yağmurlu ve nemli havalarda buharı hızla dağıtır.'
-        ]
+        'Zeiss': {
+            q: '"Gözlüğümü taktığımda cam yokmuş gibi hissediyorum, renkler inanılmaz canlı."',
+            f: [
+                ['Kristal Netlik','Gözlüğün en uç noktalarında bile görüntü bozulmaz, kusursuz görüş sağlar.'],
+                ['Dijital Senkronizasyon','Telefon ve bilgisayar ekranlarına bakarken göz yorgunluğunu sıfırlar.'],
+                ['Elmas Kaplama','Çizilmeye karşı en yüksek direnç ve su tutmayan pürüzsüz yüzey.']
+            ]
+        },
+        'Seiko': {
+            q: '"Camlarım o kadar ince ki, insanlar gözlük numaramın bu kadar yüksek olduğuna inanmıyor."',
+            f: [
+                ['Dünyanın En İncesi','Numaranız ne kadar yüksek olursa olsun, estetikten asla ödün vermez.'],
+                ['Panoramik Görüş','Göz hareketlerinize anında uyum sağlayan geniş açılı tasarım.'],
+                ['Gece Konforu','Karşıdan gelen araç farlarının göz alan parlamasını tamamen nötralize eder.']
+            ]
+        },
+        'Hoya': {
+            q: '"Baş dönmesi korkusuyla yıllardır bekledim, Hoya ile ilk saniyede uyum sağladım."',
+            f: [
+                ['Sıfır Sarsıntı','Baş hareketlerindeki görüntü kaymalarını tamamen ortadan kaldırır.'],
+                ['Geniş Odak Alanı','Okuma yaparken veya ekrana bakarken odak noktasını anında bulursunuz.'],
+                ['Doğal Kontrast','Derinlik algısını artırarak objeleri çok daha keskin görmenizi sağlar.']
+            ]
+        },
+        'Novax': {
+            q: '"Hem ekonomik olsun hem de kaliteli olsun diyenler için bulduğum en iyi çözüm."',
+            f: [
+                ['HD Çözünürlük','Dijital yüzey işleme teknolojisi ile standart camlardan 2 kat daha net.'],
+                ['Süper Hidrofobik','Yağmurlu havalarda ve buharda en hızlı temizlenen yüzey teknolojisi.'],
+                ['UV Koruma','Gözlerinizi güneşin zararlı ışınlarına karşı %100 koruma altına alır.']
+            ]
+        }
     };
 
     const lensCatalog = {
@@ -185,60 +170,52 @@
         'Novax': { tek: 'AS Infinity Digital', pro: 'Nucleo High-End', std: 'Hard Resin Std' }
     };
 
-    function navTo(target) {
+    function navTo(t) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        if(target === 'home') {
-            document.getElementById('screen-home').classList.add('active');
-        } else if(target === 'detail') {
-            document.getElementById('screen-detail').classList.add('active');
-        } else {
-            currentFlow = target;
-            document.getElementById('flow-title').innerText = target.toUpperCase();
+        if(t==='home') document.getElementById('screen-home').classList.add('active');
+        else if(t==='detail') document.getElementById('screen-detail').classList.add('active');
+        else {
+            currentFlow = t;
             document.getElementById('screen-detail').classList.add('active');
             document.getElementById('input-area').style.display = 'none';
             document.querySelectorAll('.brand-card').forEach(b => {
                 b.classList.remove('active');
-                b.style.display = (target === 'MiyoSmart' && b.innerText !== 'HOYA') ? 'none' : 'block';
+                b.style.display = (t === 'MiyoSmart' && b.innerText !== 'HOYA') ? 'none' : 'block';
             });
-            if(target === 'MiyoSmart') selectBrand('Hoya');
+            if(t === 'MiyoSmart') selectBrand('Hoya');
         }
         window.scrollTo(0,0);
     }
 
     function selectBrand(b) {
         currentBrand = b;
-        document.querySelectorAll('.brand-card').forEach(card => card.classList.remove('active'));
+        document.querySelectorAll('.brand-card').forEach(c => c.classList.remove('active'));
         if(document.getElementById('b-'+b.toLowerCase())) document.getElementById('b-'+b.toLowerCase()).classList.add('active');
         document.getElementById('input-area').style.display = 'block';
         renderInputs();
     }
 
     function renderInputs() {
-        let html = "";
+        let h = "";
         ['r','l'].forEach(s => {
-            html += `<div class="eye-label">${s==='r'?'SAĞ GÖZ NUMARALARI':'SOL GÖZ NUMARALARI'}</div>`;
+            h += `<div class="eye-label">${s==='r'?'SAĞ GÖZ (R)':'SOL GÖZ (L)'}</div>`;
             ['sph','cyl','aks'].forEach(t => {
-                let step = (t==='aks'? 1 : 0.25);
-                html += `<div class="ctrl-row">
-                    <span style="font-size:11px; color:#555; width:35px; font-weight:bold;">${t.toUpperCase()}</span>
-                    <button class="btn-v" onclick="chV('${s}_${t}', -${step})">-</button>
+                let st = (t==='aks'? 1 : 0.25);
+                h += `<div class="ctrl-row">
+                    <span style="font-size:10px; color:#444; font-weight:bold;">${t.toUpperCase()}</span>
+                    <button class="btn-v" onclick="chV('${s}_${t}', -${st})">-</button>
                     <div id="${s}_${t}_v" class="val-v">${t==='aks'?'0°':'0.00'}</div>
-                    <button class="btn-v" onclick="chV('${s}_${t}', ${step})">${t==='sph'&&currentFlow==='MiyoSmart'?'':'+'}</button>
+                    <button class="btn-v" onclick="chV('${s}_${t}', ${st})">${t==='sph'&&currentFlow==='MiyoSmart'?'':'+'}</button>
                 </div>`;
             });
         });
-        document.getElementById('inputs-container').innerHTML = html;
+        document.getElementById('inputs-container').innerHTML = h;
     }
 
-    function chV(id, amt) {
-        if(currentFlow === 'MiyoSmart' && id.includes('sph') && amt > 0 && vals[id] >= 0) return;
-        if(id.includes('aks')) {
-            vals[id] = (vals[id] + amt + 181) % 181;
-            document.getElementById(id+'_v').innerText = vals[id] + "°";
-        } else {
-            vals[id] += amt;
-            document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2);
-        }
+    function chV(id, a) {
+        if(currentFlow === 'MiyoSmart' && id.includes('sph') && a > 0 && vals[id] >= 0) return;
+        if(id.includes('aks')) { vals[id] = (vals[id] + a + 181) % 181; document.getElementById(id+'_v').innerText = vals[id] + "°"; }
+        else { vals[id] += a; document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2); }
     }
 
     function showResults() {
@@ -247,37 +224,34 @@
         
         if(currentFlow === 'MiyoSmart') {
             incText = "✨ ÖNERİ: MIYOSMART 1.59 (DARBEYE DAYANIKLI)";
-            document.getElementById('res-pre-title').innerText = "HOYA MIYOSMART D.I.M.S.";
+            document.getElementById('res-pre-title').innerText = "HOYA MIYOSMART (D.I.M.S.)";
+            document.getElementById('pre-tag').innerText = "TEDAVİ EDİCİ LENS";
             document.getElementById('std-card').style.display = 'none';
+            document.getElementById('res-quote').innerText = '"Çocuğumun miyop ilerlemesi durdu ve artık okulda çok daha başarılı."';
             document.getElementById('res-features').innerHTML = `
-                <li><i>🛡️</i> <b>Tedavi Edici:</b> Miyopi ilerlemesini durdurmaya yardımcı özel patentli yapı.</li>
-                <li><i>🛡️</i> <b>Kırılmaz Güvenlik:</b> Çocukların oyun dünyasına uygun, darbelerden etkilenmez.</li>
-                <li><i>🛡️</i> <b>Ultra Hafif:</b> Uzun süreli kullanımda kulak ve burun arkasında baskı yapmaz.</li>`;
+                <div class="feature-item"><i>🛡️</i><div class="text"><b>Miyopi Kontrolü</b><p>İlerlemeyi %60 oranında yavaşlatan dünyadaki tek patentli teknoloji.</p></div></div>
+                <div class="feature-item"><i>🛡️</i><div class="text"><b>Kırılmaz Yapı</b><p>Oyun ve spor esnasında göze gelebilecek darbelerden çocuğu korur.</p></div></div>`;
         } else {
             document.getElementById('std-card').style.display = 'block';
             let inc = (max >= 5.25) ? "1.74 (%75 İnce)" : (max >= 3.25) ? "1.67 (%60 İnce)" : (max >= 1.75) ? "1.61 (%40 İnce)" : "1.56 (%30 İnce)";
             incText = "✨ ANALİZ EDİLEN İNCELTME: " + inc;
-            
-            let key = currentFlow === 'Progressive' ? 'pro' : 'tek';
-            document.getElementById('res-pre-title').innerText = currentBrand + " - " + lensCatalog[currentBrand][key];
-            document.getElementById('res-std-title').innerText = currentBrand + " - " + lensCatalog[currentBrand].std;
-            
-            let features = lensInfo[currentBrand];
-            document.getElementById('res-features').innerHTML = features.map(f => `<li><i>💎</i> <span>${f}</span></li>`).join('');
+            document.getElementById('res-pre-title').innerText = currentBrand + " " + lensCatalog[currentBrand][currentFlow === 'Progressive' ? 'pro' : 'tek'];
+            document.getElementById('res-std-title').innerText = currentBrand + " " + lensCatalog[currentBrand].std;
+            document.getElementById('res-quote').innerText = lensInfo[currentBrand].q;
+            document.getElementById('res-features').innerHTML = lensInfo[currentBrand].f.map(item => `
+                <div class="feature-item"><i>💎</i><div class="text"><b>${item[0]}</b><p>${item[1]}</p></div></div>`).join('');
         }
-
         document.getElementById('res-inc').innerText = incText;
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById('screen-result').classList.add('active');
         window.scrollTo(0,0);
     }
 
-    function toWA(type) {
-        let title = type === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
-        let msg = `*Zenith Dijital Rapor*%0A*Kategori:* ${currentFlow}%0A*Tercih:* ${title}%0A` +
+    function toWA(t) {
+        let title = t === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
+        let msg = `*Zenith Dijital Analiz Raporu*%0A*Kategori:* ${currentFlow}%0A*Ürün:* ${title}%0A` +
                   `R: ${vals.r_sph.toFixed(2)} / ${vals.r_cyl.toFixed(2)} Ax: ${vals.r_aks}%0A` +
-                  `L: ${vals.l_sph.toFixed(2)} / ${vals.l_cyl.toFixed(2)} Ax: ${vals.l_aks}%0A` +
-                  `*İnceltme:* ${document.getElementById('res-inc').innerText}`;
+                  `L: ${vals.l_sph.toFixed(2)} / ${vals.l_cyl.toFixed(2)} Ax: ${vals.l_aks}`;
         window.location.href = "https://wa.me/905326470159?text=" + msg;
     }
 </script>
