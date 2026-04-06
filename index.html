@@ -2,234 +2,214 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlantis Elegance Optik - Zenith AI V9</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zenith AI - Atlantis Elegance</title>
     <style>
-        :root { --gold: #d4af37; --black: #050505; --gray: #121212; --cyan: #00f2ff; }
-        body { background-color: var(--black); color: #fff; font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; user-select: none; }
-        .container { max-width: 500px; margin: auto; }
+        :root { --gold: #d4af37; --black: #0b0b0b; --card-bg: #1a1a1a; --cyan: #00f2ff; --text-muted: #888; }
         
-        .header { text-align: center; margin-bottom: 20px; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; margin: 0; }
-        .subtitle { font-size: 9px; color: #666; letter-spacing: 4px; margin-top: 5px; }
+        body { background-color: var(--black); color: #fff; font-family: 'Inter', -apple-system, sans-serif; margin: 0; padding: 20px; -webkit-tap-highlight-color: transparent; }
+        .container { max-width: 450px; margin: auto; }
 
-        /* Kategori Kartları */
-        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .card { background: #151515; border: 1px solid #333; border-radius: 12px; padding: 18px 5px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .card.active-card { border: 2px solid var(--gold); background: rgba(212, 175, 55, 0.15); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-        .card h3 { margin: 0; color: var(--gold); font-size: 13px; }
+        /* Header - Minimalist & Luxury */
+        .header { text-align: center; margin-bottom: 30px; padding-top: 10px; }
+        .logo { font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: 4px; margin: 0; text-transform: uppercase; }
+        .subtitle { font-size: 9px; color: var(--text-muted); letter-spacing: 5px; margin-top: 8px; font-weight: 300; }
 
-        /* Giriş Alanları - Büyük Buton & Basılı Tutma */
-        .input-row { display: flex; align-items: center; justify-content: space-between; background: #111; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border: 1px solid #222; }
-        .input-label { font-size: 12px; color: var(--gold); font-weight: bold; width: 45px; }
-        .step-btn { width: 50px; height: 50px; border-radius: 12px; border: 2px solid var(--gold); background: transparent; color: var(--gold); font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .step-btn:active { background: var(--gold); color: #000; transform: scale(0.95); }
-        .num-display { font-size: 22px; font-weight: bold; width: 90px; text-align: center; color: #fff; }
+        /* Ana Menü Kartları */
+        .main-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+        .menu-card { 
+            background: linear-gradient(145deg, #1e1e1e, #141414);
+            border: 1px solid #333; border-radius: 16px; padding: 20px 10px; text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
+        }
+        .menu-card i { display: block; font-size: 24px; margin-bottom: 10px; }
+        .menu-card h3 { margin: 0; font-size: 11px; letter-spacing: 1px; color: var(--text-muted); }
+        .menu-card.active { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); transform: scale(1.02); background: #1a1a1a; }
+        .menu-card.active h3 { color: var(--gold); }
 
-        /* Form ve Seçimler */
-        #form-area { display: none; background: var(--gray); padding: 20px; border-radius: 20px; border: 1px solid #222; margin-top: 10px; }
-        .select-group { margin-bottom: 15px; }
-        .select-label { display: block; font-size: 10px; color: #888; margin-bottom: 5px; text-transform: uppercase; }
-        select { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #444; background: #000; color: #fff; font-size: 15px; }
+        /* Form Alanı */
+        #form-wrapper { display: none; animation: fadeIn 0.5s ease; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #444; background: #000; color: #fff; font-size: 16px; margin-bottom: 15px; appearance: none; }
 
-        /* Cam Bilgi Kutusu */
-        .cam-info-box { background: #000; border-left: 3px solid var(--gold); padding: 12px; margin: 15px 0; border-radius: 4px; display: none; }
-        .cam-info-title { color: var(--gold); font-size: 14px; font-weight: bold; margin-bottom: 5px; display: block; }
-        .cam-info-text { font-size: 12px; color: #bbb; line-height: 1.5; }
+        /* Teknoloji Puanlama */
+        .tech-stats { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #222; }
+        .stat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 11px; }
+        .stat-bar { height: 4px; background: #333; width: 60px; border-radius: 2px; overflow: hidden; position: relative; }
+        .stat-fill { height: 100%; background: var(--gold); transition: width 0.8s ease; }
 
-        .btn { background: var(--gold); color: #000; padding: 18px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 15px; font-size: 16px; }
-        .result-box { display: none; margin-top: 25px; padding: 20px; border: 1px solid var(--gold); border-radius: 15px; background: rgba(212, 175, 55, 0.05); }
-        .robot-badge { margin-top: 15px; padding: 15px; border-radius: 10px; background: rgba(0, 242, 255, 0.05); border: 1px solid var(--cyan); color: var(--cyan); font-size: 12px; text-align: center; font-weight: bold; }
+        /* Giriş Ünitesi */
+        .eye-section { text-align: center; margin-bottom: 25px; }
+        .eye-title { font-size: 10px; color: var(--gold); font-weight: 900; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase; opacity: 0.7; }
+        .control-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .label { font-size: 12px; color: #666; width: 40px; text-align: left; font-weight: bold; }
+        .btn-ctrl { width: 55px; height: 55px; border-radius: 18px; border: 1px solid #333; background: #151515; color: #fff; font-size: 24px; cursor: pointer; transition: 0.2s; }
+        .btn-ctrl:active { background: var(--gold); color: #000; border-color: var(--gold); }
+        .val-display { font-size: 22px; font-weight: 700; width: 100px; color: #fff; font-variant-numeric: tabular-nums; }
+
+        .btn-main { background: var(--gold); color: #000; padding: 20px; border: none; border-radius: 15px; font-weight: 800; width: 100%; cursor: pointer; font-size: 15px; letter-spacing: 1px; margin-top: 10px; }
+        
+        .zenith-footer { margin-top: 20px; padding: 15px; border-radius: 15px; background: rgba(0, 242, 255, 0.03); border: 1px solid rgba(0, 242, 255, 0.2); text-align: center; }
+        .zenith-footer b { color: var(--cyan); font-size: 13px; display: block; margin-bottom: 5px; }
+        .zenith-footer span { font-size: 10px; color: #666; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1 class="logo">ATLANTİS ELEGANCE OPTİK</h1>
+        <h1 class="logo">Atlantis Elegance</h1>
         <div class="subtitle">AI & TECHNOLOGY SYSTEMS</div>
     </div>
 
-    <div class="card-grid">
-        <div class="card" id="card-uzak" onclick="openForm('Uzak')"><h3>🔭 UZAK</h3></div>
-        <div class="card" id="card-yakin" onclick="openForm('Yakin')"><h3>📖 YAKIN</h3></div>
-        <div class="card" id="card-prog" onclick="openForm('Progressive')"><h3>👓 UZAK-YAKIN</h3></div>
-        <div class="card" id="card-miyo" onclick="openForm('MiyoSmart')"><h3>🛡️ MIYOSMART</h3></div>
+    <div class="main-menu">
+        <div class="menu-card" id="m-stok" onclick="selectCat('Stok')"><i>📦</i><h3>EKONOMİK STOK</h3></div>
+        <div class="menu-card" id="m-rx" onclick="selectCat('RX')"><i>💎</i><h3>PREMIUM RX</h3></div>
+        <div class="menu-card" id="m-prog" onclick="selectCat('Prog')"><i>👓</i><h3>PROGRESSIVE</h3></div>
+        <div class="menu-card" id="m-miyo" onclick="selectCat('Miyo')"><i>🛡️</i><h3>MIYOSMART</h3></div>
     </div>
 
-    <div id="form-area">
-        <div class="select-group">
-            <span class="select-label">MARKA</span>
-            <select id="brand" onchange="updateModels()"></select>
+    <div id="form-wrapper">
+        <div class="glass-panel">
+            <select id="brand-sel" onchange="loadModels()"></select>
+            <select id="model-sel" onchange="updateStats()"></select>
+
+            <div class="tech-stats" id="stats-box">
+                <div class="stat-row"><span>GÖRÜŞ ALANI</span><div class="stat-bar"><div id="b-alan" class="stat-fill"></div></div></div>
+                <div class="stat-row"><span>İNCELİK</span><div class="stat-bar"><div id="b-ince" class="stat-fill"></div></div></div>
+                <div class="stat-row"><span>ZENITH UYUMU</span><div class="stat-bar"><div id="b-zenith" class="stat-fill"></div></div></div>
+                <p id="model-desc" style="font-size:11px; color:#aaa; margin:10px 0 0 0; line-height:1.4;"></p>
+            </div>
+
+            <div id="eye-inputs"></div>
+
+            <button class="btn-main" onclick="showZenithReport()">ANALİZİ TAMAMLA</button>
         </div>
-        <div class="select-group">
-            <span class="select-label">CAM TEKNOLOJİSİ</span>
-            <select id="model" onchange="showCamDetail()"></select>
+
+        <div class="zenith-footer">
+            <b>🤖 ZENITH ROBOTIC SYSTEM</b>
+            <span>Sıfır Hata Odaklama Teknolojisi Aktif</span>
         </div>
-
-        <div id="cam-detail" class="cam-info-box">
-            <span id="detail-title" class="cam-info-title"></span>
-            <span id="detail-text" class="cam-info-text"></span>
-        </div>
-
-        <p style="color:var(--gold); font-size:11px; font-weight:bold; text-align:center; margin-top:20px;">SAĞ GÖZ (R)</p>
-        <div class="input-row"><span class="input-label">SPH</span><button class="step-btn" onmousedown="startHold('r_sph', -0.25)" onmouseup="stopHold()" ontouchstart="startHold('r_sph', -0.25)" ontouchend="stopHold()">-</button><div id="r_sph_val" class="num-display">0.00</div><button class="step-btn" onmousedown="startHold('r_sph', 0.25)" onmouseup="stopHold()" ontouchstart="startHold('r_sph', 0.25)" ontouchend="stopHold()">+</button></div>
-        <div class="input-row"><span class="input-label">CYL</span><button class="step-btn" onmousedown="startHold('r_cyl', -0.25)" onmouseup="stopHold()" ontouchstart="startHold('r_cyl', -0.25)" ontouchend="stopHold()">-</button><div id="r_cyl_val" class="num-display">0.00</div><button class="step-btn" onmousedown="startHold('r_cyl', 0.25)" onmouseup="stopHold()" ontouchstart="startHold('r_cyl', 0.25)" ontouchend="stopHold()">+</button></div>
-        <div class="input-row"><span class="input-label">AKS</span><button class="step-btn" onmousedown="startHoldAks('r_aks', -5)" onmouseup="stopHold()" ontouchstart="startHoldAks('r_aks', -5)" ontouchend="stopHold()">-</button><div id="r_aks_val" class="num-display">0°</div><button class="step-btn" onmousedown="startHoldAks('r_aks', 5)" onmouseup="stopHold()" ontouchstart="startHoldAks('r_aks', 5)" ontouchend="stopHold()">+</button></div>
-
-        <p style="color:var(--gold); font-size:11px; font-weight:bold; text-align:center; margin-top:20px;">SOL GÖZ (L)</p>
-        <div class="input-row"><span class="input-label">SPH</span><button class="step-btn" onmousedown="startHold('l_sph', -0.25)" onmouseup="stopHold()" ontouchstart="startHold('l_sph', -0.25)" ontouchend="stopHold()">-</button><div id="l_sph_val" class="num-display">0.00</div><button class="step-btn" onmousedown="startHold('l_sph', 0.25)" onmouseup="stopHold()" ontouchstart="startHold('l_sph', 0.25)" ontouchend="stopHold()">+</button></div>
-        <div class="input-row"><span class="input-label">CYL</span><button class="step-btn" onmousedown="startHold('l_cyl', -0.25)" onmouseup="stopHold()" ontouchstart="startHold('l_cyl', -0.25)" ontouchend="stopHold()">-</button><div id="l_cyl_val" class="num-display">0.00</div><button class="step-btn" onmousedown="startHold('l_cyl', 0.25)" onmouseup="stopHold()" ontouchstart="startHold('l_cyl', 0.25)" ontouchend="stopHold()">+</button></div>
-        <div class="input-row"><span class="input-label">AKS</span><button class="step-btn" onmousedown="startHoldAks('l_aks', -5)" onmouseup="stopHold()" ontouchstart="startHoldAks('l_aks', -5)" ontouchend="stopHold()">-</button><div id="l_aks_val" class="num-display">0°</div><button class="step-btn" onmousedown="startHoldAks('l_aks', 5)" onmouseup="stopHold()" ontouchstart="startHoldAks('l_aks', 5)" ontouchend="stopHold()">+</button></div>
-
-        <button class="btn" onclick="runAnalysis()">ZENITH ROBOTİK ANALİZ</button>
     </div>
-
-    <div id="result" class="result-box"></div>
 </div>
 
 <script>
+    let currentCat = "";
     let values = { r_sph: 0, r_cyl: 0, r_aks: 0, l_sph: 0, l_cyl: 0, l_aks: 0 };
-    let mode = "";
-    let holdTimer;
-    let speed = 250;
+    let holdInt;
 
-    const CAM_DATA = {
-        'Zeiss': {
-            'Progressive': [
-                {name: 'SmartLife Individual 3 (Kişiye Özel Zirve)', text: '100 Trilyon tasarım ihtimali. En geniş görüş alanı. Zenith montajı şarttır.'},
-                {name: 'SmartLife Superb (Kişisel Yüz Uyumu)', text: 'Yüz hattı ve çerçeve açısına göre tasarım. Yumuşak geçişler.'},
-                {name: 'SmartLife Plus', text: 'Hızlı odaklanma sunan dijital yaşam camı.'},
-                {name: 'SmartLife Pure', text: 'Hassas Zeiss teknolojisine giriş.'}
+    const DATA = {
+        'RX': {
+            'Zeiss': [
+                {n: 'SmartLife Individual 3', d: 'Dünyanın en gelişmiş tek odaklı camı. Tam panoramik netlik.', s:[100, 95, 100]},
+                {n: 'DriveSafe', d: 'Gece sürüşünde parlamayı %64 azaltan özel sürüş camı.', s:[85, 80, 90]},
+                {n: 'ClearView', d: 'Stok camlardan %16 daha ince, 3 kat geniş görüş.', s:[80, 85, 85]}
             ],
-            'Uzak': [
-                {name: 'Individual 3 (Full Dijital)', text: 'Camın her noktasında aynı netlik. En ince ve panoramik tasarım.'},
-                {name: 'Digital SmartLife', text: 'Alt destekli; telefon ve bilgisayar yorgunluğunu bitiren cam.'},
-                {name: 'DriveSafe', text: 'Gece sürüşünde parlama önleyici ve maksimum güvenli görüş.'},
-                {name: 'ClearView (Modern Tek Odaklı)', text: 'Stok camlardan %16 daha ince, 3 kat daha geniş netlik alanı.'}
+            'Seiko': [
+                {n: 'A-Zone (Çift Yüzey)', d: 'Dünyanın en ince ve düz camı. Kenar bulanıklığı sıfır.', s:[95, 100, 95]},
+                {n: 'Bi-Asferik', d: 'Yüksek numaralarda maksimum estetik ve incelik.', s:[90, 100, 90]}
             ]
         },
-        'Seiko': {
-            'Progressive': [
-                {name: 'Brilliance (Kişiye Özel)', text: 'Japon mühendisliğinin zirvesi. En hızlı adaptasyon ve doğal derinlik.'},
-                {name: 'Prime Xceed', text: 'Aktif yaşam için sarsıntısız görüntü.'}
-            ],
-            'Uzak': [
-                {name: 'A-Zone (Çift Yüzeyli Konfor)', text: 'Dünyanın en ince ve en düz camı. Kenar bulanıklığı yok.'},
-                {name: 'Bi-Asferik (Ultra Estetik)', text: 'Yüksek numaralarda bile şişe dibi görüntüsünü yok eden tasarım.'},
-                {name: 'Curved (Sportif Kavisli)', text: 'Bombeli çerçevelerde sıfır baş dönmesi.'}
-            ]
-        },
-        'Hoya': {
-            'Progressive': [{name: 'iD MySelf (Zirve)', text: 'Çift yüzey entegre tasarım. Sıfır yorgunluk.'}],
-            'Uzak': [{name: 'Nulux Identity V+ (Kişiye Özel)', text: 'Kişisel parametrelerle üretilen en keskin görüş.'}]
-        },
-        'Novax': {
-            'Progressive': [{name: 'Synthesis (Hibrit)', text: 'Yumuşak geçişli modern tasarım.'}],
-            'Uzak': [{name: 'Bi-Aspheric (İnce ve Estetik)', text: 'Full dijital, çift yüzeyi düzleştirilmiş yerli güç.'}]
+        'Prog': {
+            'Zeiss': [{n: 'Individual 3 Progressive', d: '100 Trilyon tasarım ihtimali. Zirve konfor.', s:[100, 95, 100]}],
+            'Seiko': [{n: 'Brilliance', d: 'Japon mühendisliği. En hızlı adaptasyon.', s:[98, 95, 100]}]
         }
     };
 
-    function startHold(id, amount) {
-        changeValue(id, amount);
-        holdTimer = setInterval(() => {
-            speed = Math.max(50, speed - 20); 
-            changeValue(id, amount);
+    function selectCat(c) {
+        currentCat = c;
+        document.querySelectorAll('.menu-card').forEach(k => k.classList.remove('active'));
+        document.getElementById('m-'+c.toLowerCase()).classList.add('active');
+        document.getElementById('form-wrapper').style.display = 'block';
+        
+        let b = document.getElementById('brand-sel');
+        b.innerHTML = "";
+        ['Zeiss', 'Seiko', 'Hoya', 'Novax'].forEach(m => { let o = document.createElement("option"); o.text = m; b.add(o); });
+        
+        loadModels();
+        renderEyes();
+    }
+
+    function loadModels() {
+        let m = document.getElementById('model-sel');
+        m.innerHTML = "";
+        let brand = document.getElementById('brand-sel').value;
+        
+        if(currentCat === 'Stok') {
+            let o = document.createElement("option"); o.text = brand + " Standart Stok"; m.add(o);
+        } else if(DATA[currentCat] && DATA[currentCat][brand]) {
+            DATA[currentCat][brand].forEach(x => { let o = document.createElement("option"); o.text = x.n; m.add(o); });
+        }
+        updateStats();
+    }
+
+    function updateStats() {
+        let brand = document.getElementById('brand-sel').value;
+        let model = document.getElementById('model-sel').value;
+        let stats = {d: "Standart optik performans.", s:[50, 40, 60]};
+
+        if(DATA[currentCat] && DATA[currentCat][brand]) {
+            let found = DATA[currentCat][brand].find(x => x.n === model);
+            if(found) stats = found;
+        }
+
+        document.getElementById('b-alan').style.width = stats.s[0] + "%";
+        document.getElementById('b-ince').style.width = stats.s[1] + "%";
+        document.getElementById('b-zenith').style.width = stats.s[2] + "%";
+        document.getElementById('model-desc').innerText = stats.d;
+    }
+
+    function renderEyes() {
+        let html = "";
+        ['r', 'l'].forEach(side => {
+            let label = side === 'r' ? "SAĞ GÖZ (R)" : "SOL GÖZ (L)";
+            html += `<div class="eye-section"><div class="eye-title">${label}</div>`;
+            ['sph', 'cyl', 'aks'].forEach(type => {
+                let step = type === 'aks' ? 1 : 0.25;
+                let display = type === 'aks' ? "0°" : "0.00";
+                html += `
+                <div class="control-row">
+                    <span class="label">${type.toUpperCase()}</span>
+                    <button class="btn-ctrl" onmousedown="start('${side}_${type}', -${step})" onmouseup="stop()" ontouchstart="start('${side}_${type}', -${step})" ontouchend="stop()">-</button>
+                    <div id="${side}_${type}_val" class="val-display">${display}</div>
+                    <button class="btn-ctrl" onmousedown="start('${side}_${type}', ${step})" onmouseup="stop()" ontouchstart="start('${side}_${type}', ${step})" ontouchend="stop()">+</button>
+                </div>`;
+            });
+            html += `</div>`;
+        });
+        document.getElementById('eye-inputs').innerHTML = html;
+    }
+
+    function start(id, amt) {
+        updateVal(id, amt);
+        let speed = 200;
+        holdInt = setInterval(() => {
+            updateVal(id, amt);
+            speed = Math.max(30, speed - 10);
         }, speed);
     }
+    function stop() { clearInterval(holdInt); }
 
-    function startHoldAks(id, amount) {
-        changeAks(id, amount);
-        holdTimer = setInterval(() => { changeAks(id, amount); }, 100);
-    }
-
-    function stopHold() {
-        clearInterval(holdTimer);
-        speed = 250;
-    }
-
-    function changeValue(id, amount) {
-        values[id] += amount;
-        document.getElementById(id + '_val').innerText = (values[id] > 0 ? "+" : "") + values[id].toFixed(2);
-    }
-
-    function changeAks(id, amount) {
-        values[id] = (values[id] + amount + 185) % 185;
-        if (values[id] > 180) values[id] = 0;
-        document.getElementById(id + '_val').innerText = values[id] + "°";
-    }
-
-    function openForm(type) {
-        mode = type;
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('active-card'));
-        let cardId = type === 'Progressive' ? 'prog' : type === 'MiyoSmart' ? 'miyo' : type.toLowerCase();
-        document.getElementById('card-' + cardId).classList.add('active-card');
-        document.getElementById('form-area').style.display = 'block';
-        
-        const brands = document.getElementById('brand');
-        brands.innerHTML = "";
-        const brandList = ['Zeiss', 'Seiko', 'Hoya', 'Novax'];
-        brandList.forEach(b => { let o = document.createElement("option"); o.value = o.innerText = b; brands.appendChild(o); });
-        
-        updateModels();
-        window.scrollTo({top: document.getElementById('form-area').offsetTop - 10, behavior: 'smooth'});
-    }
-
-    function updateModels() {
-        const brand = document.getElementById('brand').value;
-        const modelSelect = document.getElementById('model');
-        modelSelect.innerHTML = "";
-        
-        let cat = (mode === 'Progressive') ? 'Progressive' : 'Uzak';
-        if (mode === 'MiyoSmart') {
-            let o = document.createElement("option"); o.innerText = "Hoya MiyoSmart"; modelSelect.appendChild(o);
+    function updateVal(id, amt) {
+        if(id.includes('aks')) {
+            values[id] = (values[id] + amt + 181) % 181;
+            document.getElementById(id+'_val').innerText = values[id] + "°";
         } else {
-            CAM_DATA[brand][cat].forEach(m => {
-                let o = document.createElement("option"); o.value = m.name; o.innerText = m.name;
-                modelSelect.appendChild(o);
-            });
-        }
-        showCamDetail();
-    }
-
-    function showCamDetail() {
-        const brand = document.getElementById('brand').value;
-        const modelName = document.getElementById('model').value;
-        const detailBox = document.getElementById('cam-detail');
-        let cat = (mode === 'Progressive') ? 'Progressive' : 'Uzak';
-        
-        let found = mode === 'MiyoSmart' ? {name: 'DIMS Teknolojisi', text: 'Miyopi ilerlemesini yavaşlatan çocuklara özel tedavi camı.'} : 
-                    CAM_DATA[brand][cat].find(x => x.name === modelName);
-        
-        if (found) {
-            document.getElementById('detail-title').innerText = found.name;
-            document.getElementById('detail-text').innerText = found.text;
-            detailBox.style.display = 'block';
+            values[id] += amt;
+            document.getElementById(id+'_val').innerText = (values[id] > 0 ? "+" : "") + values[id].toFixed(2);
         }
     }
 
-    function runAnalysis() {
-        let res = document.getElementById('result');
-        res.innerHTML = `
-            <h4 style="margin:0; color:var(--gold); text-align:center;">ZENITH TEKNİK RAPORU</h4>
-            <p style="font-size:13px; text-align:center; margin-top:10px;"><b>Seçilen:</b> ${document.getElementById('model').value}</p>
-            <div class="robot-badge">
-                🤖 ZENITH ROBOTİK ODAK NOKTASI: SIFIR HATA<br>
-                <span style="font-size:10px; font-weight:normal;">Milimetrik dijital tarama ile üretime hazır.</span>
-            </div>
-            <button class="btn" style="background:#25d366; color:#fff;" onclick="send()">WHATSAPP İLE RANDEVU AL</button>
-        `;
-        res.style.display = 'block';
-        res.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function send() {
-        let msg = `*ATLANTİS ELEGANCE OPTİK*%0A` +
-                  `*Model:* ${document.getElementById('model').value}%0A` +
-                  `*R:* ${document.getElementById('r_sph_val').innerText} / ${document.getElementById('r_cyl_val').innerText} Ax: ${values.r_aks}%0A` +
-                  `*L:* ${document.getElementById('l_sph_val').innerText} / ${document.getElementById('l_cyl_val').innerText} Ax: ${values.l_aks}%0A` +
-                  `Zenith Robotik Odaklama Randevusu İstiyorum.`;
-        window.location.href = `https://wa.me/905326470159?text=${msg}`;
+    function showZenithReport() {
+        alert("Zenith Analizi Tamamlandı! Randevu için WhatsApp'a yönlendiriliyorsunuz.");
+        let msg = `*Atlantis Elegance - Zenith Raporu*%0A` +
+                  `Kategori: ${currentCat}%0A Cam: ${document.getElementById('model-sel').value}%0A` +
+                  `R: ${values.r_sph.toFixed(2)} / ${values.r_cyl.toFixed(2)} Ax: ${values.r_aks}%0A` +
+                  `L: ${values.l_sph.toFixed(2)} / ${values.l_cyl.toFixed(2)} Ax: ${values.l_aks}`;
+        window.location.href = "https://wa.me/905326470159?text=" + msg;
     }
 </script>
 </body>
