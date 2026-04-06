@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith V36 | Precision Edition</title>
+    <title>Zenith V37 | Master Edition</title>
     <style>
         :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; }
         body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; scroll-behavior: smooth; }
@@ -31,14 +31,15 @@
         .btn-v { width: 48px; height: 48px; border-radius: 14px; border: 1px solid #444; background: #1a1a1a; color: var(--gold); font-size: 26px; cursor: pointer; }
         .val-v { font-size: 20px; font-weight: 900; width: 85px; text-align: center; }
 
+        #screen-result { display: none; margin-top: 30px; }
         .comp-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; }
         .comp-tag { position: absolute; top: -14px; right: 25px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 6px 14px; border-radius: 8px; text-transform: uppercase; }
-        .comp-title { font-size: 19px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; }
+        .comp-title { font-size: 19px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; text-align: left; }
 
         .feature-item { margin-bottom: 18px; display: flex; align-items: flex-start; text-align: left; }
-        .feature-item i { color: var(--gold); margin-right: 14px; font-size: 20px; }
+        .feature-item i { color: var(--gold); margin-right: 14px; font-size: 18px; font-style: normal; }
         .feature-item b { color: #fff; display: block; font-size: 14px; margin-bottom: 4px; }
-        .feature-item p { color: #bbb; margin: 0; font-size: 12px; line-height: 1.5; }
+        .feature-item p { color: #bbb; margin: 0; font-size: 12px; line-height: 1.4; }
 
         .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -50,9 +51,9 @@
     <div class="hub-title">ATLANTİS ELEGANCE</div>
     <div class="hub-subtitle">ZENİTH ROBOTİC OPTİC SYSTEMS</div>
     <div class="main-menu-item active-border" onclick="navTo('Progressive')"><span>👓</span><h3>PROGRESSIVE</h3><p>UZAK - YAKIN BİR ARADA</p></div>
-    <div class="main-menu-item" onclick="navTo('Tek Odaklı')"><span>👁️</span><h3>TEK ODAKLI</h3><p>KRİSTAL NETLİK TEKNOLOJİSİ</p></div>
-    <div class="main-menu-item" onclick="navTo('MiyoSmart')"><span>🛡️</span><h3>MIYOSMART</h3><p>MİYOPİ DURDURMA TEDAVİSİ</p></div>
-    <div class="main-menu-item" onclick="navTo('Ofis')"><span>💻</span><h3>OFFICE / MASA BAŞI</h3><p>YAKIN VE ORTA MESAFE</p></div>
+    <div class="main-menu-item" onclick="navTo('Tek Odaklı')"><span>👁️</span><h3>TEK ODAKLI</h3><p>TEK MESAFE ÇÖZÜMLERİ</p></div>
+    <div class="main-menu-item" onclick="navTo('MiyoSmart')"><span>🛡️</span><h3>MIYOSMART</h3><p>MİYOPİ TEDAVİ TEKNOLOJİSİ</p></div>
+    <div class="main-menu-item" onclick="navTo('Ofis')"><span>💻</span><h3>MASA BAŞI / OFİS</h3><p>YAKIN VE ORTA MESAFE</p></div>
 </div>
 
 <div id="zenith-app">
@@ -72,7 +73,8 @@
         </div>
     </div>
 
-    <div id="screen-result" style="display:none;">
+    <div id="screen-result">
+        <div id="result-anchor"></div>
         <div id="result-content">
             <div class="comp-card" id="premium-card">
                 <div class="comp-tag">ZENITH LABORATORY RX</div>
@@ -92,7 +94,42 @@
 
 <script>
     let currentFlow = ""; let currentBrand = "";
-    let vals = { r_sph: 0, r_cyl: 0, r_aks: 0, r_add: 0, l_sph: 0, l_cyl: 0, l_aks: 0, l_add: 0 };
+    let vals = { r_sph:0, r_cyl:0, r_aks:0, r_add:0, l_sph:0, l_cyl:0, l_aks:0, l_add:0 };
+
+    const opticData = {
+        'Zeiss': {
+            'Progressive': {
+                c1: ['SmartLife Individual 3', [['💎 AI Tasarımı', 'Yapay zeka ile kişiselleştirilmiş en geniş görüş alanı.'], ['🎯 Lazer Kesim', 'Mikron hassasiyetinde lazerle işlenen odaklar.'], ['🌌 Panoramik', 'Uzak-yakın arası pürüzsüz ve doğal geçiş.']]],
+                c2: ['SmartLife Superb', [['✅ Çerçeve Uyumu', 'Çerçevenin duruş açısına özel lazer optimizasyonu.'], ['🛡️ Kristal Netlik', 'Kenar alanlardaki bulanıklığı yok eden dijital yüzey.'], ['👁️ Dijital İkiz', 'Göz yapınızla birebir eşleşen üretim.']]]
+            },
+            'Tek Odaklı': {
+                c1: ['SmartLife ClearView RX', [['💎 Freeform Teknoloji', 'Geleneksel camlardan 3 kat daha geniş netlik alanı.'], ['🎨 İnce Estetik', 'Yüksek numaralarda bile ultra ince ve düz tasarım.'], ['🧿 UV Protection', 'Gözleri tam koruyan Zeiss kaplama teknolojisi.']]],
+                c2: ['ClearView Stock', [['✅ HD Görüntü', 'Stok camda en yüksek netlik standartı.'], ['🚀 Hızlı Çözüm', 'Kusursuz kalite ve hızlı teslimat avantajı.'], ['🛡️ DuraVision', 'Çizilmeye karşı ekstra dirençli yüzey.']]]
+            }
+        },
+        'Seiko': {
+            'Progressive': {
+                c1: ['Brilliance Premium', [['🔬 Dual-Side Tasarım', 'Çift taraflı işleme ile dünyanın en geniş görüş koridoru.'], ['🌪️ Sarsıntısız Görüş', 'Görüntü kaymasını sıfıra indiren özel Seiko algoritması.'], ['🎯 Akıllı Fokus', 'Odaklar arası geçişte maksimum yumuşaklık.']]],
+                c2: ['Emblem Advanced', [['✅ Stabil Görüş', 'Hareket halindeyken bile netliği koruyan dengeleme.'], ['🛡️ HCC Kaplama', 'Dünyanın en dayanıklı ve kirlenmeyen yüzey teknolojisi.'], ['👁️ HD Optik', 'Dijital tarama ile her noktada net görüntü.']]]
+            },
+            'Tek Odaklı': {
+                c1: ['A-Zone Dual Aspheric', [['📐 Çift Asferik', 'Dünyanın en ince ve en doğal görüntüsünü sunan tasarım.'], ['💎 Sıfır Bozulma', 'Cam kenarlarındaki yamulmaları tamamen yok eder.'], ['🕊️ Hafiflik', 'Ağırlığı hissetmeyeceğiniz ultra hafif materyal.']]],
+                c2: ['AS Single Vision', [['✅ Hassas Kesim', 'Lazer tabanlı dijital üretim ile yüksek çözünürlük.'], ['🛡️ Super Resistant', 'Darbe ve çizilmeye karşı maksimum koruma.'], ['👁️ Net Alan', 'Genişletilmiş merkezi görme kalitesi.']]]
+            }
+        },
+        'Hoya': {
+            'Progressive': {
+                c1: ['MySelf iD Lifestyle 3', [['🔬 3D Analiz', 'Robotik 3D ölçümleme ile hatasız odak noktaları.'], ['🌪️ Dengeli Görüş', 'Merdiven inip çıkarken oluşan yer kayması hissini siler.'], ['📊 Geniş Koridor', 'En geniş okuma alanı sunan Hoya teknolojisi.']]],
+                c2: ['Balansis Advanced', [['⚡ Hızlı Adaptasyon', 'Yeni numaralara anında alışma sağlayan özel yapı.'], ['💎 Elmas Kaplama', 'Çizilmeye karşı moleküler dirençli sert yüzey.'], ['🎯 Dijital Fokus', 'Odaklar arası yumuşak ve konforlu geçiş.']]]
+            }
+        },
+        'Novax': {
+            'Progressive': {
+                c1: ['Nucleo High-End', [['🇹🇷 Yerli Zirve', 'En gelişmiş teknoloji ile en geniş görüş alanı.'], ['🎯 Freeform Plus', 'Sıfır hata payı ile dijital yüzey işleme kalitesi.'], ['🌌 HD Görüş', 'Gece ve gündüz kesintisiz yüksek çözünürlük.']]],
+                c2: ['Evolution Plus', [['✅ Ekonomik Konfor', 'Uzak ve yakını bir arada sunan hızlı alışma süresi.'], ['🛡️ Pixal Kaplama', 'Yansımayı önleyen kristal berraklığında yüzey.'], ['👁️ Geniş Açı', 'Standart camlara oranla daha rahat görüş.']]]
+            }
+        }
+    };
 
     function navTo(t) {
         currentFlow = t;
@@ -114,17 +151,10 @@
         ['r','l'].forEach(s => {
             h += `<div class="eye-title">${s==='r'?'SAĞ GÖZ (R)':'SOL GÖZ (L)'}</div>`;
             let fields = ['sph','cyl','aks'];
-            // ADİSYON SADECE PROG VE OFİS İÇİN
             if(currentFlow === 'Progressive' || currentFlow === 'Ofis') fields.push('add');
-            
             fields.forEach(t => {
                 let st = (t==='aks'? 1 : 0.25);
-                h += `<div class="ctrl-row">
-                    <span style="font-size:10px; color:#444;">${t.toUpperCase()}</span>
-                    <button class="btn-v" onclick="chV('${s}_${t}', -${st})">-</button>
-                    <div id="${s}_${t}_v" class="val-v">${t==='aks'? (vals[s+'_'+t] || 0) : (vals[s+'_'+t] || 0).toFixed(2)}</div>
-                    <button class="btn-v" onclick="chV('${s}_${t}', ${st})">+</button>
-                </div>`;
+                h += `<div class="ctrl-row"><span style="font-size:10px; color:#444;">${t.toUpperCase()}</span><button class="btn-v" onclick="chV('${s}_${t}', -${st})">-</button><div id="${s}_${t}_v" class="val-v">${t==='aks'?(vals[s+'_'+t]||0):(vals[s+'_'+t]||0).toFixed(2)}</div><button class="btn-v" onclick="chV('${s}_${t}', ${st})">+</button></div>`;
             });
         });
         document.getElementById('inputs-container').innerHTML = h;
@@ -132,18 +162,20 @@
 
     function chV(id, a) {
         if(!vals[id]) vals[id] = 0;
-        if(id.includes('aks')) {
-            vals[id] = (vals[id] + a + 181) % 181;
-            document.getElementById(id+'_v').innerText = vals[id];
-        } else {
-            vals[id] += a;
-            document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2);
-        }
+        if(id.includes('aks')) { vals[id] = (vals[id] + a + 181) % 181; document.getElementById(id+'_v').innerText = vals[id]; }
+        else { vals[id] += a; document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2); }
     }
 
     function showResults() {
-        // ... (OpticData verileri bir önceki tam kod ile aynıdır, her markanın verisi burada yer alır)
-        // Sonuç ekranına geçiş ve kaydırma
+        let cat = currentFlow === 'Tek Odaklı' ? 'Tek Odaklı' : 'Progressive';
+        let dataSet = (opticData[currentBrand] && opticData[currentBrand][cat]) || 
+                      { c1: [currentBrand+' Premium RX', [['💎 Teknoloji','Üst segment cam.']]], c2:[currentBrand+' Advanced', [['✅ Konfor','Rahat görüş.']]] };
+
+        document.getElementById('res-pre-title').innerText = currentBrand + " " + dataSet.c1[0];
+        document.getElementById('res-pre-features').innerHTML = dataSet.c1[1].map(f => `<div class="feature-item"><i>★</i><div class="text"><b>${f[0]}</b><p>${f[1]}</p></div></div>`).join('');
+        document.getElementById('res-std-title').innerText = currentBrand + " " + dataSet.c2[0];
+        document.getElementById('res-std-features').innerHTML = dataSet.c2[1].map(f => `<div class="feature-item"><i>✔</i><div class="text"><b>${f[0]}</b><p>${f[1]}</p></div></div>`).join('');
+
         document.getElementById('screen-result').style.display = 'block';
         setTimeout(() => { document.getElementById('premium-card').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
     }
