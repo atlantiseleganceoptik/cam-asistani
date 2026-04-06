@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith AI V17 - Atlantis Elegance</title>
+    <title>Zenith AI V18 - Atlantis Elegance</title>
     <style>
         :root { --gold: #d4af37; --black: #080808; --gray: #121212; --cyan: #00f2ff; }
         body { background-color: var(--black); color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 15px; user-select: none; }
@@ -28,16 +28,16 @@
         .btn-v { width: 42px; height: 42px; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: var(--gold); font-size: 20px; cursor: pointer; }
         .val-v { font-size: 18px; font-weight: bold; width: 70px; text-align: center; color: #fff; font-variant-numeric: tabular-nums; }
 
-        /* Sonuç Kartları - İkisi de Premium Görünümlü */
+        /* Sonuç Kartları */
         #result-area { display: none; margin-top: 25px; animation: slideUp 0.5s; }
-        .comp-card { background: linear-gradient(160deg, #151515 0%, #080808 100%); border: 1px solid var(--gold); border-radius: 18px; padding: 20px; margin-bottom: 25px; border-left: 5px solid var(--gold); position: relative; }
+        .comp-card { background: linear-gradient(160deg, #151515 0%, #080808 100%); border: 1px solid var(--gold); border-radius: 18px; padding: 20px; margin-bottom: 25px; border-left: 5px solid var(--gold); }
         
-        .comp-title { font-size: 14px; font-weight: bold; color: var(--gold); margin-bottom: 10px; display: block; text-transform: uppercase; letter-spacing: 1px; }
-        .comp-text { font-size: 11px; color: #bbb; line-height: 1.6; margin-bottom: 15px; }
-        .spec-line { font-size: 10px; color: var(--cyan); margin-bottom: 10px; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .comp-title { font-size: 14px; font-weight: bold; color: var(--gold); margin-bottom: 12px; display: block; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 8px; }
+        .sub-head { color: var(--gold); font-size: 11px; font-weight: bold; display: block; margin-top: 10px; margin-bottom: 3px; text-transform: uppercase; }
+        .comp-text { font-size: 11px; color: #bbb; line-height: 1.6; margin-bottom: 5px; }
+        .spec-line { font-size: 11px; color: var(--cyan); margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
 
-        .btn-main { background: var(--gold); color: #000; padding: 16px; border: none; border-radius: 10px; width: 100%; font-weight: 800; font-size: 12px; cursor: pointer; margin-top: 10px; letter-spacing: 0.5px; transition: 0.3s; }
-        .btn-main:active { transform: scale(0.98); background: #b8962d; }
+        .btn-main { background: var(--gold); color: #000; padding: 16px; border: none; border-radius: 10px; width: 100%; font-weight: 800; font-size: 12px; cursor: pointer; margin-top: 15px; letter-spacing: 0.5px; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -65,25 +65,31 @@
     </div>
 
     <div id="result-area">
-        <div style="font-size:10px; color:var(--gold); text-align:center; margin-bottom:15px; font-weight:bold; letter-spacing:1px;">NUMARALARINIZA ÖZEL TEKNİK RAPOR</div>
+        <div style="font-size:10px; color:var(--gold); text-align:center; margin-bottom:15px; font-weight:bold;">SİSTEM ANALİZ SONUÇLARI</div>
         
         <div class="comp-card">
             <span class="comp-title">Individual (Kişiye Özel) Teknoloji</span>
             <div class="spec-line">✨ ÖNERİLEN İNCELTME: <span id="inc-pre">...</span></div>
-            <p class="comp-text">
-                <b>Optik Performans:</b> Camın tüm yüzeyinde (360 derece) sapmalar minimize edilmiştir. Kenar bakışlarda görsel esneme yaşanmaz, doğal ve panoramik bir derinlik sunar. <br>
-                <b>Zenith Entegrasyonu:</b> Robotik odaklama ile 0.1 mm payla montaj verilerinize tam uyum sağlar.
-            </p>
+            
+            <span class="sub-head">Optik Performans</span>
+            <p class="comp-text">Camın tüm yüzeyinde sapmalar minimize edilmiştir. Kenar bakışlarda görsel esneme yaşanmaz, doğal ve panoramik bir görüş sunar.</p>
+            
+            <span class="sub-head">Zenith Entegrasyonu</span>
+            <p class="comp-text">Robotik odaklama ile 0.1 mm payla kişisel montaj verilerinize tam uyum sağlayarak en yüksek konforu sunar.</p>
+            
             <button class="btn-main" onclick="toWA('Premium Individual')">BİLGİ VE RANDEVU İÇİN BİZE ULAŞIN</button>
         </div>
 
         <div class="comp-card">
             <span class="comp-title">Stok (Standart) Tasarım</span>
             <div class="spec-line">✨ ÖNERİLEN İNCELTME: <span id="inc-std">...</span></div>
-            <p class="comp-text">
-                <b>Optik Performans:</b> Görsel netlik sadece merkez odakta en yüksektir. Göz hareketleri kenarlara doğru kaydığında odak dışı puslanma ve daralma hissedilebilir. <br>
-                <b>Zenith Entegrasyonu:</b> Dijital odaklama verileri ile standart çerçeve montajına uygundur.
-            </p>
+            
+            <span class="sub-head">Optik Performans</span>
+            <p class="comp-text">Netlik sadece merkez odakta en yüksektir. Göz hareketleri kenarlara doğru kaydığında odak dışı puslanma ve daralma hissedilebilir.</p>
+            
+            <span class="sub-head">Zenith Entegrasyonu</span>
+            <p class="comp-text">Dijital odaklama verileri ile standart çerçeve montajına uygundur.</p>
+            
             <button class="btn-main" onclick="toWA('Standart Stok')">BİLGİ VE RANDEVU İÇİN BİZE ULAŞIN</button>
         </div>
     </div>
@@ -98,8 +104,6 @@
         document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
         let id = type.split('/')[0].split(' ')[0].toLowerCase().substring(0,3);
         if(document.getElementById('m-'+id)) document.getElementById('m-'+id).classList.add('active');
-        
-        document.getElementById('flow-title').innerText = type + " ANALİZİ";
         document.getElementById('input-panel').style.display = 'block';
         document.getElementById('result-area').style.display = 'none';
         renderInputs();
@@ -136,24 +140,21 @@
         let max = Math.max(Math.abs(vals.r_sph), Math.abs(vals.l_sph));
         let inc = ""; let ratio = "";
         
-        // Yeni İnceltme Oranları Algoritması
-        if (max >= 6.25) { inc = "1.74 Ekstrem İnce"; ratio = "%75"; }
-        else if (max >= 4.25) { inc = "1.67 Süper İnce"; ratio = "%60"; }
-        else if (max >= 2.25) { inc = "1.61 Konfor İnce"; ratio = "%40"; }
+        // GÜNCELLENMİŞ İNCELEME ALGORİTMASI
+        if (max >= 5.25) { inc = "1.74 Ekstrem İnce"; ratio = "%75"; }
+        else if (max >= 3.25) { inc = "1.67 Süper İnce"; ratio = "%60"; } // 3.25 Eşiği eklendi
+        else if (max >= 1.75) { inc = "1.61 Konfor İnce"; ratio = "%40"; }
         else { inc = "1.56 Hafif İnce"; ratio = "%30"; }
         
-        let resultTxt = `${inc} <span style="color:#fff; opacity:0.6;">[${ratio} Daha Hafif]</span>`;
-        
-        document.getElementById('inc-pre').innerHTML = resultTxt;
-        document.getElementById('inc-std').innerHTML = resultTxt;
-        
+        let txt = `${inc} <span style="color:#fff; opacity:0.6;">[${ratio}]</span>`;
+        document.getElementById('inc-pre').innerHTML = txt;
+        document.getElementById('inc-std').innerHTML = txt;
         document.getElementById('result-area').style.display = 'block';
         window.scrollTo({top: document.getElementById('result-area').offsetTop, behavior: 'smooth'});
     }
 
     function toWA(choice) {
-        let msg = `*Atlantis Elegance - Zenith Raporu*%0A` +
-                  `*Tür:* ${currentFlow}%0A*Tercih:* ${choice}%0A` +
+        let msg = `*Atlantis Elegance - Zenith Raporu*%0A*Tür:* ${currentFlow}%0A*Tercih:* ${choice}%0A` +
                   `R: ${vals.r_sph.toFixed(2)} / ${vals.r_cyl.toFixed(2)} Ax: ${vals.r_aks}%0A` +
                   `L: ${vals.l_sph.toFixed(2)} / ${vals.l_cyl.toFixed(2)} Ax: ${vals.l_aks}`;
         window.location.href = "https://wa.me/905326470159?text=" + msg;
