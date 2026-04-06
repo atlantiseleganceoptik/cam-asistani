@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zenith V40 | Elite Edition</title>
+    <title>Zenith V41 | Index Master</title>
     <style>
-        :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; }
+        :root { --gold: #d4af37; --black: #050505; --dark: #121212; --white: #ffffff; --grey: #888; --cyan: #00f2ff; }
         body { background-color: var(--black); color: var(--white); font-family: 'Inter', sans-serif; margin: 0; padding: 0; user-select: none; scroll-behavior: smooth; }
         
         #zenith-hub { display: flex; flex-direction: column; align-items: center; padding: 40px 20px; text-align: center; }
         .hub-title { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 5px; margin-bottom: 5px; text-transform: uppercase; }
         .hub-subtitle { font-size: 10px; color: var(--grey); letter-spacing: 3px; margin-bottom: 35px; font-weight: bold; }
         
-        .main-menu-item { width: 100%; max-width: 340px; background: var(--dark); border: 1.5px solid #333; border-radius: 20px; padding: 22px 15px; margin-bottom: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .main-menu-item { width: 100%; max-width: 340px; background: var(--dark); border: 1.5px solid #333; border-radius: 20px; padding: 22px 15px; margin-bottom: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
         .main-menu-item.active-border { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
         .main-menu-item span { font-size: 32px; margin-bottom: 12px; }
         .main-menu-item h3 { margin: 0; font-size: 17px; font-weight: 900; }
@@ -34,10 +34,11 @@
         #screen-result { display: none; margin-top: 30px; }
         .comp-card { background: #0c0c0c; border: 2.5px solid var(--gold); border-radius: 28px; padding: 25px; margin-bottom: 30px; position: relative; }
         .comp-tag { position: absolute; top: -14px; right: 25px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 6px 14px; border-radius: 8px; text-transform: uppercase; }
+        .index-badge { display: inline-block; background: #222; color: var(--cyan); font-size: 11px; font-weight: 900; padding: 5px 12px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #333; }
         .comp-title { font-size: 19px; font-weight: 900; color: var(--gold); border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; display: block; text-align: left; }
 
         .feature-item { margin-bottom: 18px; display: flex; align-items: flex-start; text-align: left; }
-        .feature-item b { color: var(--gold); display: block; font-size: 13px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        .feature-item b { color: var(--gold); display: block; font-size: 13px; margin-bottom: 4px; text-transform: uppercase; }
         .feature-item p { color: #ccc; margin: 0; font-size: 12px; line-height: 1.5; font-weight: 500; }
 
         .btn-main { background: var(--gold); color: #000; padding: 22px; border: none; border-radius: 20px; width: 100%; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; }
@@ -67,7 +68,7 @@
         <div id="input-area" style="display:none;">
             <div class="input-box">
                 <div id="inputs-container"></div>
-                <button class="btn-main" onclick="showResults()" style="background:#00f2ff; margin-top:20px;">ANALİZİ TAMAMLA</button>
+                <button class="btn-main" onclick="showResults()" style="background:var(--cyan); margin-top:20px;">ANALİZİ TAMAMLA</button>
             </div>
         </div>
     </div>
@@ -76,12 +77,14 @@
         <div id="result-content">
             <div class="comp-card" id="premium-card">
                 <div class="comp-tag">ZENITH LABORATORY RX</div>
+                <div id="res-pre-index" class="index-badge">Önerilen: --</div>
                 <span class="comp-title" id="res-pre-title">...</span>
                 <div id="res-pre-features"></div>
                 <button class="btn-main" onclick="toWA('Premium')">BİLGİ VE RANDEVU ALIN</button>
             </div>
             <div class="comp-card">
                 <div class="comp-tag" style="background:#222; color:var(--gold);">STANDART SEÇENEK</div>
+                <div id="res-std-index" class="index-badge">Önerilen: --</div>
                 <span class="comp-title" id="res-std-title">...</span>
                 <div id="res-std-features"></div>
                 <button class="btn-main" onclick="toWA('Alternatif')">BİLGİ VE RANDEVU ALIN</button>
@@ -129,9 +132,9 @@
         }
     };
 
-    function navTo(t) { currentFlow = t; document.getElementById('zenith-hub').style.display = 'none'; document.getElementById('zenith-app').style.display = 'block'; if(t === 'MiyoSmart') selectBrand('Hoya'); }
+    function navTo(t) { currentFlow = t; document.getElementById('zenith-hub').style.display = 'none'; document.getElementById('zenith-app').style.display = 'block'; }
     function selectBrand(b) { currentBrand = b; document.querySelectorAll('.brand-card').forEach(c => c.classList.remove('active')); document.getElementById('b-'+b.toLowerCase()).classList.add('active'); document.getElementById('input-area').style.display = 'block'; renderInputs(); }
-    
+
     function renderInputs() {
         let h = "";
         ['r','l'].forEach(s => {
@@ -152,10 +155,22 @@
         else { vals[id] += a; document.getElementById(id+'_v').innerText = (vals[id]>0?"+":"") + vals[id].toFixed(2); }
     }
 
+    function getRecommendedIndex() {
+        let maxAbs = Math.max(Math.abs(vals.r_sph) + Math.abs(vals.r_cyl), Math.abs(vals.l_sph) + Math.abs(vals.l_cyl));
+        if (maxAbs <= 2.00) return "1.50 Standart İndeks";
+        if (maxAbs <= 4.00) return "1.61 İnce %35";
+        if (maxAbs <= 6.00) return "1.67 Çok İnce %45";
+        return "1.74 Ultra İnce %55";
+    }
+
     function showResults() {
         let cat = currentFlow === 'Tek Odaklı' ? 'Tek Odaklı' : 'Progressive';
         let dataSet = (opticData[currentBrand] && opticData[currentBrand][cat]) || 
                       { c1: [currentBrand+' Premium RX', [['💎 Teknoloji','En üst segment üretim.']]], c2:[currentBrand+' Advanced', [['✅ Konfor','Geniş görüş alanı.']]] };
+
+        let recIndex = getRecommendedIndex();
+        document.getElementById('res-pre-index').innerText = "ZENİTH TAVSİYESİ: " + recIndex;
+        document.getElementById('res-std-index').innerText = "ZENİTH TAVSİYESİ: " + recIndex;
 
         document.getElementById('res-pre-title').innerText = currentBrand + " " + dataSet.c1[0];
         document.getElementById('res-pre-features').innerHTML = dataSet.c1[1].map(f => `<div class="feature-item"><div><b>${f[0]}</b><p>${f[1]}</p></div></div>`).join('');
@@ -168,8 +183,9 @@
 
     function toWA(t) {
         let title = t === 'Premium' ? document.getElementById('res-pre-title').innerText : document.getElementById('res-std-title').innerText;
+        let index = getRecommendedIndex();
         let addStr = (vals.r_add || vals.l_add) ? `%0A*ADD:* R:${vals.r_add.toFixed(2)} / L:${vals.l_add.toFixed(2)}` : "";
-        let msg = `*Zenith Analiz*%0A*Ürün:* ${title}%0A*R:* ${vals.r_sph.toFixed(2)}/${vals.r_cyl.toFixed(2)} Ax:${vals.r_aks}${addStr}`;
+        let msg = `*Zenith Analiz*%0A*Ürün:* ${title}%0A*İndeks:* ${index}%0A*R:* ${vals.r_sph.toFixed(2)}/${vals.r_cyl.toFixed(2)} Ax:${vals.r_aks}${addStr}`;
         window.location.href = "https://wa.me/905326470159?text=" + msg;
     }
 </script>
